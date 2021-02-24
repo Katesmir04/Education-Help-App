@@ -5,56 +5,91 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.annotations.SerializedName
 import com.kate.app.educationhelp.R
+import com.kate.app.educationhelp.databinding.FragmentAllTopicsBinding
+import com.kate.app.educationhelp.databinding.ItemHolderBinding
+import com.kate.app.educationhelp.domain.models.Topic
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AllTopicsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AllTopicsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val binding: FragmentAllTopicsBinding by lazy {
+        FragmentAllTopicsBinding.inflate(layoutInflater)
     }
+
+    private val viewModel by viewModels<AllTopicsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_topics, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AllTopicsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AllTopicsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val adapter = Adapter()
+        binding.recyclerView.adapter = adapter
+        viewModel.topicsState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                TopicsListState.Loading -> {
+                    binding.root.isRefreshing = true
+                }
+                is TopicsListState.Loaded -> {
+                    binding.root.isRefreshing = false
+                    adapter.submitList(state.content)
                 }
             }
+
+        }
+
+        binding.root.setOnRefreshListener {
+            viewModel.refreshData()
+        }
+    }
+
+
+    class Adapter : ListAdapter<Topic, Adapter.Holder>(DiffCallback) {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+            return Holder(parent)
+        }
+
+        override fun onBindViewHolder(holder: Holder, position: Int) {
+            holder.bind(getItem(position))
+        }
+
+        class Holder(private val binding: ItemHolderBinding) :
+            RecyclerView.ViewHolder(binding.root) {
+            constructor(parent: ViewGroup) : this(
+                ItemHolderBinding.inflate(
+                    LayoutInflater.from(
+                        parent.context
+                    ), parent, false
+                )
+            )
+
+            fun bind(topic: Topic) {
+                binding.apply {
+                    titleTV.text = topic.title
+                    bodyTV.text = topic.body
+                }
+            }
+        }
+
+        object DiffCallback : DiffUtil.ItemCallback<Topic>() {
+            override fun areItemsTheSame(oldItem: Topic, newItem: Topic): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: Topic, newItem: Topic): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }

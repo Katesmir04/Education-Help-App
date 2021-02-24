@@ -21,8 +21,7 @@ class AllTopicsViewModel : ViewModel() {
 
     fun refreshData() {
         viewModelScope.launch(Dispatchers.IO) {
-            _topicsState.value =
-                TopicsListState.Loaded(GetAllTopicsUseCase(MyBackendRepository).execute())
+            _topicsState.postValue(TopicsListState.Loaded(GetAllTopicsUseCase(MyBackendRepository).execute()))
         }
     }
 }
