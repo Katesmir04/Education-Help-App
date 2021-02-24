@@ -1,4 +1,4 @@
-package com.kate.app.educationhelp.presentation
+package com.kate.app.educationhelp.presentation.alltopics
 
 import com.kate.app.educationhelp.domain.models.Topic
 
