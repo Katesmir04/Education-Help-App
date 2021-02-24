@@ -25,5 +25,5 @@ object MyBackendRepository: IRepository {
 
     private val backApi = retrofit.create(IMyBackendAPI::class.java)
 
-    suspend fun getAllTopics() = backApi.getAllTopics()
+    override suspend fun getAllTopics() = backApi.getAllTopics()
 }
