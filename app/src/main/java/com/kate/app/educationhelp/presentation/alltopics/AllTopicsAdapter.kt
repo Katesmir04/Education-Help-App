@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kate.app.educationhelp.databinding.ItemHolderBinding
 import com.kate.app.educationhelp.domain.models.Topic
 
-class AllTopicsAdapter : ListAdapter<Topic, AllTopicsAdapter.Holder>(DiffCallback) {
+class AllTopicsAdapter(private val topicClick: (topic: Topic) -> Unit) : ListAdapter<Topic, AllTopicsAdapter.Holder>(DiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(parent)
     }
@@ -17,7 +17,7 @@ class AllTopicsAdapter : ListAdapter<Topic, AllTopicsAdapter.Holder>(DiffCallbac
         holder.bind(getItem(position))
     }
 
-    class Holder(private val binding: ItemHolderBinding) :
+    inner class Holder(private val binding: ItemHolderBinding) :
         RecyclerView.ViewHolder(binding.root) {
         constructor(parent: ViewGroup) : this(
             ItemHolderBinding.inflate(
@@ -31,6 +31,9 @@ class AllTopicsAdapter : ListAdapter<Topic, AllTopicsAdapter.Holder>(DiffCallbac
             binding.apply {
                 titleTV.text = topic.title
                 bodyTV.text = topic.body
+                wholeCard.setOnClickListener {
+                    topicClick.invoke(topic)
+                }
             }
         }
     }
