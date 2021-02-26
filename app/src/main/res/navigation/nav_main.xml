@@ -7,12 +7,25 @@
 
     <fragment
         android:id="@+id/allTopicsFragment"
-        android:name="com.kate.app.educationhelp.presentation.AllTopicsFragment"
+        android:name="com.kate.app.educationhelp.presentation.alltopics.AllTopicsFragment"
         android:label="fragment_all_topics"
-        tools:layout="@layout/fragment_all_topics" />
+        tools:layout="@layout/fragment_all_topics" >
+        <action
+            android:id="@+id/action_allTopicsFragment_to_topicDescriptionFragment"
+            app:destination="@id/topicDescriptionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/allTestsFragment"
         android:name="com.kate.app.educationhelp.presentation.AllTestsFragment"
         android:label="fragment_all_tests"
         tools:layout="@layout/fragment_all_tests" />
+    <fragment
+        android:id="@+id/topicDescriptionFragment"
+        android:name="com.kate.app.educationhelp.presentation.topicdescr.TopicDescriptionFragment"
+        android:label="fragment_topic_description"
+        tools:layout="@layout/fragment_topic_description" >
+        <argument
+            android:name="topic"
+            app:argType="com.kate.app.educationhelp.domain.models.Topic" />
+    </fragment>
 </navigation>
