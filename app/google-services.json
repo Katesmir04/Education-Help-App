@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "818810828697",
+    "firebase_url": "https://educationback-d0f78-default-rtdb.firebaseio.com",
+    "project_id": "educationback-d0f78",
+    "storage_bucket": "educationback-d0f78.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818810828697:android:c4e5fd2617508d91f68508",
+        "android_client_info": {
+          "package_name": "com.kate.app.educationhelp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818810828697-p8oe9i62iqtmj2ag2s6omlm82af82lqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1kz4PVsiU274OjlszKelaVJyxjuC8RaA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818810828697-p8oe9i62iqtmj2ag2s6omlm82af82lqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

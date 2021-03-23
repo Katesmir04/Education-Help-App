@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.storage.FirebaseStorage
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentTopicDescriptionBinding
 import com.kate.app.educationhelp.domain.models.Topic
+import com.squareup.picasso.Picasso
 
 class TopicDescriptionFragment : Fragment() {
 
@@ -34,6 +36,12 @@ class TopicDescriptionFragment : Fragment() {
             subject.text = getString(R.string.subject, topic.subject)
             grade.text = getString(R.string.grade, topic.grade.toString())
             body.text = topic.body
+
+            val storageReference = FirebaseStorage.getInstance().reference.child("Рис. 1. Горение угля в кислороде.png").downloadUrl.addOnSuccessListener {
+                Picasso.get().load(it).into(binding.pager)
+
+            }
+
         }
     }
 
