@@ -9,6 +9,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentTopicDescriptionBinding
 import com.kate.app.educationhelp.domain.models.Topic
+import com.kate.app.educationhelp.presentation.topicdescr.images.ViewPagerInstructionsAdapter
 import com.squareup.picasso.Picasso
 
 class TopicDescriptionFragment : Fragment() {
@@ -37,11 +38,14 @@ class TopicDescriptionFragment : Fragment() {
             grade.text = getString(R.string.grade, topic.grade.toString())
             body.text = topic.body
 
-            val storageReference = FirebaseStorage.getInstance().reference.child("Рис. 1. Горение угля в кислороде.png").downloadUrl.addOnSuccessListener {
-                Picasso.get().load(it).into(binding.pager)
-
+            binding.pager.apply {
+                adapter = topic.images?.let {
+                    ViewPagerInstructionsAdapter(
+                        requireContext(),
+                        it
+                    )
+                }
             }
-
         }
     }
 
