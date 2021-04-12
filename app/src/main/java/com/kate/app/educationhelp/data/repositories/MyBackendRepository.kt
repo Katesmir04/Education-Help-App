@@ -7,7 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object MyBackendRepository: IRepository {
+object MyBackendRepository : IRepository {
 
 
     private val okHttpClient = OkHttpClient.Builder()
@@ -26,4 +26,6 @@ object MyBackendRepository: IRepository {
     private val backApi = retrofit.create(IMyBackendAPI::class.java)
 
     override suspend fun getAllTopics() = backApi.getAllTopics()
+
+    override suspend fun getTestsByTopicId(id: String) = backApi.getTestsByTopicId(id)
 }
