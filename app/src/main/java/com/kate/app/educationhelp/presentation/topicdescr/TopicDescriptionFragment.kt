@@ -1,19 +1,18 @@
 package com.kate.app.educationhelp.presentation.topicdescr
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebChromeClient
-import com.google.firebase.storage.FirebaseStorage
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentTopicDescriptionBinding
 import com.kate.app.educationhelp.domain.models.Topic
+import com.kate.app.educationhelp.presentation.quize.QuizeFragmentArgs
 import com.kate.app.educationhelp.presentation.topicdescr.images.ViewPagerInstructionsAdapter
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.squareup.picasso.Picasso
 
 class TopicDescriptionFragment : Fragment() {
 
@@ -56,6 +55,15 @@ class TopicDescriptionFragment : Fragment() {
                     youTubePlayer.loadVideo(kek, 0F)
                 }
             })
+
+            testsT.setOnClickListener {
+                topic.id?.let { topicId ->
+                    findNavController().navigate(
+                        R.id.action_topicDescriptionFragment_to_quizeFragment,
+                        QuizeFragmentArgs(topicId = topicId).toBundle()
+                    )
+                }
+            }
         }
     }
 

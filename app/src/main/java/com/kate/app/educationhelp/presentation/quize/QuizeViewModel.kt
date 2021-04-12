@@ -15,16 +15,12 @@ class QuizeViewModel : ViewModel() {
     val testsState: LiveData<TestsListState>
         get() = _testsState
 
-    init {
-        refreshData()
-    }
-
-    fun refreshData() {
+    fun refreshData(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _testsState.postValue(
                 TestsListState.Loaded(
                     GetTestsByTopicIdUseCase(MyBackendRepository).execute(
-                        "1bSILTLOipuNf4NPIOTv"
+                        id
                     )
                 )
             )

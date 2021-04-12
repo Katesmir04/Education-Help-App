@@ -27,5 +27,17 @@
         <argument
             android:name="topic"
             app:argType="com.kate.app.educationhelp.domain.models.Topic" />
+        <action
+            android:id="@+id/action_topicDescriptionFragment_to_quizeFragment"
+            app:destination="@id/quizeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizeFragment"
+        android:name="com.kate.app.educationhelp.presentation.quize.QuizeFragment"
+        android:label="fragment_quize"
+        tools:layout="@layout/fragment_quize" >
+        <argument
+            android:name="topicId"
+            app:argType="string" />
     </fragment>
 </navigation>

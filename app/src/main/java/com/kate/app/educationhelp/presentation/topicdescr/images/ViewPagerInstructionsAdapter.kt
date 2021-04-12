@@ -9,7 +9,6 @@ import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import com.google.firebase.storage.FirebaseStorage
 import com.kate.app.educationhelp.R
-import com.kate.app.educationhelp.databinding.ImagePagerItemBinding
 import com.squareup.picasso.Picasso
 
 
@@ -29,9 +28,10 @@ class ViewPagerInstructionsAdapter(
             val view = LayoutInflater.from(context)
                 .inflate(R.layout.image_pager_item, null)
 
-            FirebaseStorage.getInstance().reference.child(data[position]).downloadUrl.addOnSuccessListener {
-                Picasso.get().load(it).into(view.findViewById<ImageView>(R.id.image))
-            }
+            if (data.isNotEmpty() && data[position].isNotBlank())
+                FirebaseStorage.getInstance().reference.child(data[position]).downloadUrl.addOnSuccessListener {
+                    Picasso.get().load(it).into(view.findViewById<ImageView>(R.id.image))
+                }
 
             listOfViews.add(
                 view
