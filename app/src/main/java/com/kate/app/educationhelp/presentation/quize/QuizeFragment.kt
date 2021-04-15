@@ -29,8 +29,12 @@ class QuizeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
 
         viewModel.testsState.observe(viewLifecycleOwner) { state ->
             when (state) {
@@ -39,6 +43,20 @@ class QuizeFragment : Fragment() {
                 }
                 is TestsListState.Loaded -> {
                     Log.d("TESTS", "tests ${state.content}")
+
+                    binding.pager.apply {
+                        adapter = ViewPagerTestAdapter(
+                            requireContext(),
+                            state.content
+                        ) {
+                            //move to next
+
+
+                        }
+                        clipToPadding = false;
+                        setPadding(60, 60, 60, 60);
+                        pageMargin = 16
+                    }
                 }
             }
         }
