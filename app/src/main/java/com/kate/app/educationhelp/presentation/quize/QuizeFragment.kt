@@ -34,8 +34,6 @@ class QuizeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         viewModel.testsState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 TestsListState.Loading -> {
