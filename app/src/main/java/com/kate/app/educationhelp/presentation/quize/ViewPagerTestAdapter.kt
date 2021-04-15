@@ -37,6 +37,8 @@ class ViewPagerTestAdapter(
             view.findViewById<TextView>(R.id.a_3).text = it.answer?.get(2)
             view.findViewById<TextView>(R.id.a_4).text = it.answer?.get(3)
 
+            view.findViewById<TextView>(R.id.bonus).text = "Bonuses ${it.bonus?.toString()}"
+
             listOfViews.add(
                 view
             )
