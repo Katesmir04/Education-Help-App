@@ -1,15 +1,10 @@
 package com.kate.app.educationhelp.presentation.quize
 
-import android.R.attr.left
-import android.R.attr.right
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import com.kate.app.educationhelp.R
@@ -34,6 +29,13 @@ class ViewPagerTestAdapter(
                 .inflate(R.layout.quize_test_item, null)
 
             view.findViewById<TextView>(R.id.descr).text = it.title
+
+            view.findViewById<TextView>(R.id.name).text = "Test ${position + 1}"
+
+            view.findViewById<TextView>(R.id.a_1).text = it.answer?.first()
+            view.findViewById<TextView>(R.id.a_2).text = it.answer?.get(1)
+            view.findViewById<TextView>(R.id.a_3).text = it.answer?.get(2)
+            view.findViewById<TextView>(R.id.a_4).text = it.answer?.get(3)
 
             listOfViews.add(
                 view
