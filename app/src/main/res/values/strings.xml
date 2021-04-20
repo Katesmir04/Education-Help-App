@@ -13,4 +13,15 @@
     <string name="body">Body</string>
     <string name="take_a_quize">Take a quize!</string>
     <string name="next">Next</string>
+
+    <string name="enter_email">Введите email</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Нет аккаунта? <b>СОЗДАТЬ</b> Сейчас!</string>
+    <string name="or">Или</string>
+    <string name="socials">Sing in with Socials</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="sign_up_b">Зарегистрироваться</string>
+    <string name="cannot_be_empty">Поле не может быть пустым</string>
+    <string name="toast_no_such_user">Ошибка. Неверный логин или пароль</string>
 </resources>
