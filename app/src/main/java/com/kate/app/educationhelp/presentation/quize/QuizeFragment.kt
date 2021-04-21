@@ -1,13 +1,17 @@
 package com.kate.app.educationhelp.presentation.quize
 
 import android.os.Bundle
-import android.util.Log
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentQuizeBinding
+import com.kate.app.educationhelp.domain.models.Test
+import kotlinx.android.parcel.Parcelize
 
 class QuizeFragment : Fragment() {
 
@@ -21,6 +25,9 @@ class QuizeFragment : Fragment() {
         QuizeFragmentArgs.fromBundle(requireArguments()).topicId
     }
 
+    private var answers: MutableList<QuizeResults> = mutableListOf()
+    private var goToResults = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +35,6 @@ class QuizeFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,17 +46,16 @@ class QuizeFragment : Fragment() {
 
                 }
                 is TestsListState.Loaded -> {
-                    Log.d("TESTS", "tests ${state.content}")
-
                     binding.pager.apply {
                         adapter = ViewPagerTestAdapter(
                             requireContext(),
-                            state.content
-                        ) {
-                            //move to next
-
-
-                        }
+                            state.content,
+                            confirm = {
+                                answers.add(QuizeResults(it.first, it.second, it.third))
+                            },
+                            next = {
+                                moveToNextItem(state.content)
+                            })
                         clipToPadding = false;
                         setPadding(60, 60, 60, 60);
                         pageMargin = 16
@@ -61,4 +66,34 @@ class QuizeFragment : Fragment() {
 
         viewModel.refreshData(topicId)
     }
+
+    private fun moveToNextItem(list: List<Test>) {
+
+        if (goToResults) {
+            findNavController().navigate(
+                R.id.action_quizeFragment_to_quizeResultsFragment,
+                QuizeResultsFragmentArgs(results = answers.toTypedArray()).toBundle()
+            )
+        }
+
+        var currentPosition = binding.pager.currentItem
+
+        if (currentPosition < list.size - 1) {
+            currentPosition++
+            binding.pager.currentItem = currentPosition
+        }
+
+        if (currentPosition == list.size - 1) {
+            goToResults = true
+        }
+
+
+    }
+
+    @Parcelize
+    data class QuizeResults(
+        val test: Test,
+        val correct: Boolean,
+        val bonus: Int
+    ) : Parcelable
 }

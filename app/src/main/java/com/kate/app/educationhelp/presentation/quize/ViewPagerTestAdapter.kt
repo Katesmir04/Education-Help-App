@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import com.kate.app.educationhelp.R
@@ -14,9 +15,12 @@ import com.kate.app.educationhelp.domain.models.Test
 class ViewPagerTestAdapter(
     private var context: Context,
     private var data: List<Test>,
-    private val nextClick: (position: Int) -> Unit
+    private val confirm: (Triple<Test, Boolean, Int>) -> Unit,
+    private val next: () -> Unit
 ) :
     PagerAdapter() {
+
+    private var currentAnswer: Triple<Test, Boolean, Int>? = null
 
     @SuppressLint("CutPasteId")
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -32,12 +36,33 @@ class ViewPagerTestAdapter(
 
             view.findViewById<TextView>(R.id.name).text = "Test ${position + 1}"
 
-            view.findViewById<TextView>(R.id.a_1).text = it.answer?.first()
-            view.findViewById<TextView>(R.id.a_2).text = it.answer?.get(1)
-            view.findViewById<TextView>(R.id.a_3).text = it.answer?.get(2)
-            view.findViewById<TextView>(R.id.a_4).text = it.answer?.get(3)
+            view.findViewById<RadioButton>(R.id.a_1).text = it.answer?.first()
+            view.findViewById<RadioButton>(R.id.a_1).setOnClickListener { button ->
+                currentAnswer =
+                    Triple(it, (button as RadioButton).text == it.correct_answer, it.bonus ?: 0)
+            }
+            view.findViewById<RadioButton>(R.id.a_2).text = it.answer?.get(1)
+            view.findViewById<RadioButton>(R.id.a_2).setOnClickListener { button ->
+                currentAnswer =
+                    Triple(it, (button as RadioButton).text == it.correct_answer, it.bonus ?: 0)
+            }
+            view.findViewById<RadioButton>(R.id.a_3).text = it.answer?.get(2)
+            view.findViewById<RadioButton>(R.id.a_3).setOnClickListener { button ->
+                currentAnswer =
+                    Triple(it, (button as RadioButton).text == it.correct_answer, it.bonus ?: 0)
+            }
+            view.findViewById<RadioButton>(R.id.a_4).text = it.answer?.get(3)
+            view.findViewById<RadioButton>(R.id.a_4).setOnClickListener { button ->
+                currentAnswer =
+                    Triple(it, (button as RadioButton).text == it.correct_answer, it.bonus ?: 0)
+            }
 
             view.findViewById<TextView>(R.id.bonus).text = "Bonuses ${it.bonus?.toString()}"
+
+            view.findViewById<TextView>(R.id.button).setOnClickListener {
+                currentAnswer?.let { it1 -> confirm.invoke(it1) }
+                next.invoke()
+            }
 
             listOfViews.add(
                 view
@@ -46,10 +71,6 @@ class ViewPagerTestAdapter(
 
         container.addView(listOfViews[position])
         return listOfViews[position]
-    }
-
-    private fun nextClick(position: Int) {
-        nextClick.invoke(position)
     }
 
     override fun getCount(): Int {
