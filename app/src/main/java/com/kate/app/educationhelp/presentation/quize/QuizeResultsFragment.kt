@@ -26,5 +26,8 @@ class QuizeResultsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         results = QuizeResultsFragmentArgs.fromBundle(requireArguments()).results.toList()
+        val adapter = QuizeResultsAdapter(requireContext())
+        binding.recycler.adapter = adapter
+        adapter.submitList(results)
     }
 }
