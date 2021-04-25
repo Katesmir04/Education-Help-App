@@ -12,7 +12,7 @@ data class Test(
     var subject: String? = null,
     var type: Int? = null,
     var answer: List<String>? = null,
-    var correctAnswer: String? = null,
+    var correct_answer: String? = null,
     var bonus: Int? = null
 
 ) : Parcelable {}
