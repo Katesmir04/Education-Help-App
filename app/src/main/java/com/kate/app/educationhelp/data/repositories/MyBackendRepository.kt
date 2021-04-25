@@ -34,6 +34,7 @@ object MyBackendRepository : IRepository, IRepository.AuthRepository {
     override suspend fun getAllTopics() = backApi.getAllTopics()
 
     override suspend fun getTestsByTopicId(id: String) = backApi.getTestsByTopicId(id)
+    override suspend fun getAllQuizes() = backApi.getAllQuizes()
 
     override suspend fun signIn(email: String, password: String) =
         auth.signInWithEmailAndPassword(email, password).await()
