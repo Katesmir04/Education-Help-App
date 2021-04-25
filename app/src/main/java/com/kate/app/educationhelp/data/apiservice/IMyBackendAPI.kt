@@ -22,4 +22,7 @@ interface IMyBackendAPI {
 
     @POST("/data/pushNewUser")
     suspend fun pushNewUser(@Body user: User)
+
+    @GET("/data/addBonusesToUser")
+    suspend fun addBonusesToUser(@Query("id") id: String, @Query("number") number: Int)
 }

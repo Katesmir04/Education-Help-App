@@ -10,6 +10,7 @@ interface IRepository {
     suspend fun getAllTopics(): List<Topic>
     suspend fun getTestsByTopicId(id: String): List<Test>
     suspend fun getAllQuizes(): List<Quize>
+    suspend fun addBonusesToUser(id: String, number: Int)
 
     interface AuthRepository {
         suspend fun signIn(email: String, password: String): AuthResult
