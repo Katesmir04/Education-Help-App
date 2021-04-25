@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
         android:id="@+id/all_theoretical_topics"
@@ -14,7 +13,7 @@
         android:id="@+id/tests"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/allTestsFragment"
-            android:title="@string/tests" />
+            android:id="@+id/allQuizesFragment"
+            android:title="@string/quizes" />
     </group>
 </menu>

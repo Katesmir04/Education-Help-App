@@ -30,8 +30,12 @@ class AllQuizesAdapter(private val quizeClick: (quize: Quize) -> Unit) :
 
         fun bind(quize: Quize) {
             binding.apply {
-                titleTV.text = quize.subject
-                bodyTV.text = quize.title
+                titleTV.text = (adapterPosition + 1).toString()
+                // bodyTV.text = quize.title
+
+                wholeCard.setOnClickListener {
+                    quizeClick.invoke(quize)
+                }
             }
         }
     }

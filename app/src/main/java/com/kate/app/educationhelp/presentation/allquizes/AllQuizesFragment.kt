@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentAllQuizesBinding
+import com.kate.app.educationhelp.presentation.quize.QuizeFragmentArgs
 
 class AllQuizesFragment : Fragment() {
 
@@ -28,7 +31,8 @@ class AllQuizesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = AllQuizesAdapter {
-            //todo
+            findNavController().navigate(R.id.action_allQuizesFragment_to_quizeFragment,
+                it.topicId?.let { it1 -> QuizeFragmentArgs(topicId = it1).toBundle() })
         }
         binding.recyclerView.adapter = adapter
         viewModel.quizesState.observe(viewLifecycleOwner) { state ->

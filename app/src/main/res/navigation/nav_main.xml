@@ -9,21 +9,25 @@
         android:id="@+id/allTopicsFragment"
         android:name="com.kate.app.educationhelp.presentation.alltopics.AllTopicsFragment"
         android:label="fragment_all_topics"
-        tools:layout="@layout/fragment_all_topics" >
+        tools:layout="@layout/fragment_all_topics">
         <action
             android:id="@+id/action_allTopicsFragment_to_topicDescriptionFragment"
             app:destination="@id/topicDescriptionFragment" />
     </fragment>
     <fragment
-        android:id="@+id/allTestsFragment"
-        android:name="com.kate.app.educationhelp.presentation.AllTestsFragment"
+        android:id="@+id/allQuizesFragment"
+        android:name="com.kate.app.educationhelp.presentation.allquizes.AllQuizesFragment"
         android:label="fragment_all_tests"
-        tools:layout="@layout/fragment_all_tests" />
+        tools:layout="@layout/fragment_all_quizes">
+        <action
+            android:id="@+id/action_allQuizesFragment_to_quizeFragment"
+            app:destination="@id/quizeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/topicDescriptionFragment"
         android:name="com.kate.app.educationhelp.presentation.topicdescr.TopicDescriptionFragment"
         android:label="fragment_topic_description"
-        tools:layout="@layout/fragment_topic_description" >
+        tools:layout="@layout/fragment_topic_description">
         <argument
             android:name="topic"
             app:argType="com.kate.app.educationhelp.domain.models.Topic" />
@@ -35,7 +39,7 @@
         android:id="@+id/quizeFragment"
         android:name="com.kate.app.educationhelp.presentation.quize.QuizeFragment"
         android:label="fragment_quize"
-        tools:layout="@layout/fragment_quize" >
+        tools:layout="@layout/fragment_quize">
         <argument
             android:name="topicId"
             app:argType="string" />
@@ -47,7 +51,7 @@
         android:id="@+id/quizeResultsFragment"
         android:name="com.kate.app.educationhelp.presentation.quize.QuizeResultsFragment"
         android:label="fragment_quize_results"
-        tools:layout="@layout/fragment_quize_results" >
+        tools:layout="@layout/fragment_quize_results">
         <argument
             android:name="results"
             app:argType="com.kate.app.educationhelp.presentation.quize.QuizeFragment$QuizeResults[]" />
