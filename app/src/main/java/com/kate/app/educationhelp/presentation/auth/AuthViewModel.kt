@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.FirebaseException
 import com.kate.app.educationhelp.data.repositories.MyBackendRepository
+import com.kate.app.educationhelp.domain.models.User
+import com.kate.app.educationhelp.domain.usecases.PushNewUserUseCase
 import com.kate.app.educationhelp.domain.usecases.SignInUserUseCase
 import com.kate.app.educationhelp.domain.usecases.SignUpUserUseCase
 import kotlinx.coroutines.launch
@@ -38,6 +40,13 @@ class AuthViewModel : ViewModel() {
                     password.trim()
                 ).user?.let {
                     _state.postValue(AuthState.Authorized)
+
+                    PushNewUserUseCase(MyBackendRepository).execute(
+                        user = emptyUser(
+                            it.uid,
+                            "Vasya"
+                        )
+                    )
                 } ?: run {
                     _state.postValue(AuthState.Failed)
                 }
@@ -50,4 +59,18 @@ class AuthViewModel : ViewModel() {
     enum class AuthState {
         Authorized, Failed, None
     }
+
+    private fun emptyUser(id: String, name: String) =
+        User(
+            id = id,
+            avatar = "",
+            favoriteSubject = "",
+            favorites = emptyList(),
+            grade = 0,
+            name = name,
+            passedQuizes = emptyList(),
+            recentlyViewed = emptyList(),
+            status = "",
+            totalBonuses = 0
+        )
 }
