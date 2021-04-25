@@ -15,6 +15,5 @@ data class User(
     var recentlyViewed: List<String>? = null,
     var status: String? = null,
     var totalBonuses: Int? = null
-) : Parcelable {
+) : Parcelable {}
 
-}
