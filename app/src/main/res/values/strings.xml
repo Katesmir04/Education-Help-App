@@ -24,4 +24,6 @@
     <string name="sign_up_b">Зарегистрироваться</string>
     <string name="cannot_be_empty">Поле не может быть пустым</string>
     <string name="toast_no_such_user">Ошибка. Неверный логин или пароль</string>
+    <string name="confirm">Confirm</string>
+    <string name="you_will_not_be_able_to_retake_the_quiz">You will not be able to retake the quiz</string>
 </resources>

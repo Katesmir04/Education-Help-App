@@ -29,5 +29,9 @@ class QuizeResultsFragment : Fragment() {
         val adapter = QuizeResultsAdapter(requireContext())
         binding.recycler.adapter = adapter
         adapter.submitList(results)
+
+        binding.confirm.setOnClickListener {
+
+        }
     }
 }
