@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.kate.app.educationhelp.databinding.ItemHolderBinding
+import com.kate.app.educationhelp.databinding.TopicItemBinding
 import com.kate.app.educationhelp.domain.models.Quize
 
 class AllQuizesAdapter(private val quizeClick: (quize: Quize) -> Unit) :
@@ -18,10 +18,10 @@ class AllQuizesAdapter(private val quizeClick: (quize: Quize) -> Unit) :
         holder.bind(getItem(position))
     }
 
-    inner class Holder(private val binding: ItemHolderBinding) :
+    inner class Holder(private val binding: TopicItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         constructor(parent: ViewGroup) : this(
-            ItemHolderBinding.inflate(
+            TopicItemBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false
@@ -30,7 +30,7 @@ class AllQuizesAdapter(private val quizeClick: (quize: Quize) -> Unit) :
 
         fun bind(quize: Quize) {
             binding.apply {
-                titleTV.text = (adapterPosition + 1).toString()
+                title.text = (adapterPosition + 1).toString()
                 // bodyTV.text = quize.title
 
                 wholeCard.setOnClickListener {

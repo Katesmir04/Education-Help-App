@@ -33,7 +33,7 @@ class AllTopicsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = AllTopicsAdapter{
+        val adapter = AllTopicsAdapter(requireContext()){
             onTopicClicked(it)
         }
         binding.recyclerView.adapter = adapter

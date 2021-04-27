@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/allTopicsFragment"
         android:name="com.kate.app.educationhelp.presentation.alltopics.AllTopicsFragment"
-        android:label="fragment_all_topics"
+        android:label="Теория"
         tools:layout="@layout/fragment_all_topics">
         <action
             android:id="@+id/action_allTopicsFragment_to_topicDescriptionFragment"

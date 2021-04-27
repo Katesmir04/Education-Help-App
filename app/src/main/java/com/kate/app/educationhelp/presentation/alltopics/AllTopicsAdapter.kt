@@ -1,14 +1,20 @@
 package com.kate.app.educationhelp.presentation.alltopics
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.kate.app.educationhelp.databinding.ItemHolderBinding
+import com.kate.app.educationhelp.R
+import com.kate.app.educationhelp.databinding.TopicItemBinding
 import com.kate.app.educationhelp.domain.models.Topic
 
-class AllTopicsAdapter(private val topicClick: (topic: Topic) -> Unit) : ListAdapter<Topic, AllTopicsAdapter.Holder>(DiffCallback) {
+class AllTopicsAdapter(
+    private val context: Context,
+    private val topicClick: (topic: Topic) -> Unit
+) :
+    ListAdapter<Topic, AllTopicsAdapter.Holder>(DiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(parent)
     }
@@ -17,10 +23,10 @@ class AllTopicsAdapter(private val topicClick: (topic: Topic) -> Unit) : ListAda
         holder.bind(getItem(position))
     }
 
-    inner class Holder(private val binding: ItemHolderBinding) :
+    inner class Holder(private val binding: TopicItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         constructor(parent: ViewGroup) : this(
-            ItemHolderBinding.inflate(
+            TopicItemBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false
@@ -29,8 +35,13 @@ class AllTopicsAdapter(private val topicClick: (topic: Topic) -> Unit) : ListAda
 
         fun bind(topic: Topic) {
             binding.apply {
-                titleTV.text = topic.title
-                bodyTV.text = topic.body
+                title.text = topic.title
+                subjectAndGrade.text = context.resources.getString(
+                    R.string.subject_and_grade,
+                    topic.subject,
+                    topic.grade.toString()
+                )
+                body.text = topic.body
                 wholeCard.setOnClickListener {
                     topicClick.invoke(topic)
                 }

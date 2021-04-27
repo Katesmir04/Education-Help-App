@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EducationHelp</string>
+    <string name="app_name">HelpEd</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="all_theoretical_topics">All Theoretical Topics</string>
@@ -26,4 +26,6 @@
     <string name="toast_no_such_user">Ошибка. Неверный логин или пароль</string>
     <string name="confirm">Confirm</string>
     <string name="you_will_not_be_able_to_retake_the_quiz">You will not be able to retake the quiz</string>
+
+    <string name="subject_and_grade">%s, %s класс</string>
 </resources>
