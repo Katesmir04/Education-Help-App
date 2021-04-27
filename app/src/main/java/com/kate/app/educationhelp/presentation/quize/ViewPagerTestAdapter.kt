@@ -25,12 +25,18 @@ class ViewPagerTestAdapter(
     @SuppressLint("CutPasteId")
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
 
+
         val listOfViews = mutableListOf<View>()
 
         data.forEach {
 
             val view = LayoutInflater.from(context)
                 .inflate(R.layout.quize_test_item, null)
+
+            if (position == data.size - 1) {
+                view.findViewById<TextView>(R.id.button).text =
+                    context.resources.getString(R.string.complete)
+            }
 
             view.findViewById<TextView>(R.id.descr).text = it.title
 

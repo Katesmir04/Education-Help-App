@@ -6,8 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentQuizeResultsBinding
 import com.kate.app.educationhelp.presentation.quize.QuizeFragment.QuizeResults
+
 
 class QuizeResultsFragment : Fragment() {
 
@@ -30,20 +35,32 @@ class QuizeResultsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         results = QuizeResultsFragmentArgs.fromBundle(requireArguments()).results.toList()
         val adapter = QuizeResultsAdapter(requireContext())
+
+        binding.recycler.addItemDecoration(
+            DividerItemDecoration(
+                binding.recycler.context,
+                LinearLayoutManager.VERTICAL
+            )
+        )
+
         binding.recycler.adapter = adapter
         adapter.submitList(results)
 
         binding.confirm.setOnClickListener {
-
-            var totalBonuses = 0
-
-            results.filter {
-                it.correct
-            }.map {
-                totalBonuses += it.bonus
-            }
-
-            viewModel.updateBonuses(totalBonuses)
+            viewModel.updateBonuses(results.totalBonuses())
+            findNavController().navigate(R.id.action_quizeResultsFragment_to_allQuizesFragment)
         }
+
+        binding.totalBonuses.text = resources.getString(
+            R.string.total_bonuses,
+            results.totalBonuses().toString()
+        )
+    }
+
+
+    private fun List<QuizeResults>.totalBonuses() = filter {
+        it.correct
+    }.sumBy {
+        it.bonus
     }
 }

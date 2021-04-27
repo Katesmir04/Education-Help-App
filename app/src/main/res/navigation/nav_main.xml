@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/topicDescriptionFragment"
         android:name="com.kate.app.educationhelp.presentation.topicdescr.TopicDescriptionFragment"
-        android:label="fragment_topic_description"
+        android:label="Теория"
         tools:layout="@layout/fragment_topic_description">
         <argument
             android:name="topic"
@@ -50,10 +50,13 @@
     <fragment
         android:id="@+id/quizeResultsFragment"
         android:name="com.kate.app.educationhelp.presentation.quize.QuizeResultsFragment"
-        android:label="fragment_quize_results"
+        android:label="Результаты"
         tools:layout="@layout/fragment_quize_results">
         <argument
             android:name="results"
             app:argType="com.kate.app.educationhelp.presentation.quize.QuizeFragment$QuizeResults[]" />
+        <action
+            android:id="@+id/action_quizeResultsFragment_to_allQuizesFragment"
+            app:destination="@id/allQuizesFragment" />
     </fragment>
 </navigation>

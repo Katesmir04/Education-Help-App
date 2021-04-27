@@ -11,7 +11,7 @@
     <string name="subject">Subject: %s</string>
     <string name="grade">Grade: %s</string>
     <string name="body">Body</string>
-    <string name="take_a_quize">Take a quize!</string>
+    <string name="take_a_quize">Пройти тест</string>
     <string name="next">Next</string>
 
     <string name="enter_email">Введите email</string>
@@ -24,8 +24,16 @@
     <string name="sign_up_b">Зарегистрироваться</string>
     <string name="cannot_be_empty">Поле не может быть пустым</string>
     <string name="toast_no_such_user">Ошибка. Неверный логин или пароль</string>
-    <string name="confirm">Confirm</string>
-    <string name="you_will_not_be_able_to_retake_the_quiz">You will not be able to retake the quiz</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="you_will_not_be_able_to_retake_the_quiz">На прохождение теста дается одна попытка</string>
 
     <string name="subject_and_grade">%s, %s класс</string>
+    <string name="video">Видео</string>
+    <string name="gallery">Галерея</string>
+    <string name="details">Подробнее</string>
+    <string name="hide">Скрыть</string>
+    <string name="no_body">"Описание отсутствует"</string>
+    <string name="total_bonuses">Вы получите %s бонусов</string>
+    <string name="logout">Выйти</string>
+    <string name="complete">Завершить</string>
 </resources>

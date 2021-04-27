@@ -1,6 +1,7 @@
 package com.kate.app.educationhelp.presentation.topicdescr
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,9 +37,10 @@ class TopicDescriptionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             title.text = topic.title
-            subject.text = getString(R.string.subject, topic.subject)
-            grade.text = getString(R.string.grade, topic.grade.toString())
-            body.text = topic.body
+            subject.text =
+                getString(R.string.subject_and_grade, topic.subject, topic.grade.toString())
+
+            body.text = topic.body?.replace("\n", "\n")
 
             pager.apply {
                 adapter = topic.images?.let {
@@ -62,6 +64,18 @@ class TopicDescriptionFragment : Fragment() {
                         R.id.action_topicDescriptionFragment_to_quizeFragment,
                         QuizeFragmentArgs(topicId = topicId).toBundle()
                     )
+                }
+            }
+
+            more.setOnClickListener {
+                if (more.text == resources.getString(R.string.details)) {
+                    body.maxLines = Int.MAX_VALUE
+                    body.ellipsize = null
+                    more.text = resources.getString(R.string.hide)
+                } else {
+                    body.maxLines = 10
+                    body.ellipsize = TextUtils.TruncateAt.END
+                    more.text = resources.getString(R.string.details)
                 }
             }
         }
