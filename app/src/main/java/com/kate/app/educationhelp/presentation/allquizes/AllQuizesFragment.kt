@@ -30,7 +30,7 @@ class AllQuizesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = AllQuizesAdapter {
+        val adapter = AllQuizesAdapter(requireContext()) {
             findNavController().navigate(R.id.action_allQuizesFragment_to_quizeFragment,
                 it.topicId?.let { it1 -> QuizeFragmentArgs(topicId = it1).toBundle() })
         }

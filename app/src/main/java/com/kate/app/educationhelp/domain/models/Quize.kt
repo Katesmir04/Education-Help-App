@@ -7,5 +7,8 @@ import kotlinx.android.parcel.Parcelize
 data class Quize(
     var id: String? = null,
     var topicId: String? = null,
-    var tests: List<String>? = null
+    var tests: List<String>? = null,
+    val title: String? = null,
+    val subject: String? = null,
+    val grade: Int? = null
 ) : Parcelable {}
