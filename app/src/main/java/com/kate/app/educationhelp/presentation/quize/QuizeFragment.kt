@@ -64,7 +64,14 @@ class QuizeFragment : Fragment() {
             }
         }
 
-        viewModel.refreshData(topicId)
+        topicId.let { viewModel.refreshData(it) }
+
+        viewModel.topic.observe(viewLifecycleOwner) {
+            binding.title.text = it?.title ?: "..."
+        }
+
+        //binding.title.text = topicId.title ?: "..."
+
     }
 
     private fun moveToNextItem(list: List<Test>) {

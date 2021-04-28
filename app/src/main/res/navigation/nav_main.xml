@@ -40,12 +40,12 @@
         android:name="com.kate.app.educationhelp.presentation.quize.QuizeFragment"
         android:label="fragment_quize"
         tools:layout="@layout/fragment_quize">
-        <argument
-            android:name="topicId"
-            app:argType="string" />
         <action
             android:id="@+id/action_quizeFragment_to_quizeResultsFragment"
             app:destination="@id/quizeResultsFragment" />
+        <argument
+            android:name="topicId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/quizeResultsFragment"
