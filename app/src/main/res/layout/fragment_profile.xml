@@ -4,275 +4,294 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".presentation.profile.ProfileFragment">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/imageContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:padding="8dp"
-        app:cardCornerRadius="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainContentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/imageContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:padding="8dp"
+            app:cardCornerRadius="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="8dp"
+                android:src="@drawable/sample_icon" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Vasya"
+            android:textAllCaps="true"
+            android:textColor="@color/text_purple"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageContainer" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Vasya@mail.ru"
+            android:textColor="@color/main_purple"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name" />
+
+        <TextView
+            android:id="@+id/grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="11 Класс"
+            android:textColor="@color/main_purple"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/favoritesContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            android:elevation="6dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/grade">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="4dp">
+
+
+                <ImageView
+                    android:id="@+id/f_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/ic_baseline_star_border_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/f_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginStart="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/favs_profile"
+                    android:textColor="@color/text_purple"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/f_count"
+                    app:layout_constraintStart_toEndOf="@id/f_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/f_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:text="200"
+                    android:textColor="@color/text_purple"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
 
         <ImageView
-            android:id="@+id/image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:padding="8dp"
-            android:src="@drawable/sample_icon" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Vasya"
-        android:textAllCaps="true"
-        android:textColor="@color/text_purple"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageContainer" />
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Vasya@mail.ru"
-        android:textColor="@color/main_purple"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name" />
-
-    <TextView
-        android:id="@+id/grade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="11 Класс"
-        android:textColor="@color/main_purple"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/favoritesContainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        android:elevation="6dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/grade">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:id="@+id/s_icon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingVertical="4dp">
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_outline_savings_24"
+            app:layout_constraintBottom_toBottomOf="@id/imageContainer"
+            app:layout_constraintEnd_toStartOf="@id/s_number"
+            app:layout_constraintTop_toTopOf="@id/imageContainer" />
 
-
-            <ImageView
-                android:id="@+id/f_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_baseline_star_border_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/f_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:layout_marginStart="8dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/favs_profile"
-                android:textColor="@color/text_purple"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/f_count"
-                app:layout_constraintStart_toEndOf="@id/f_icon"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/f_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:layout_marginEnd="12dp"
-                android:text="200"
-                android:textColor="@color/text_purple"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <ImageView
-        android:id="@+id/s_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_outline_savings_24"
-        app:layout_constraintBottom_toBottomOf="@id/imageContainer"
-        app:layout_constraintEnd_toStartOf="@id/s_number"
-        app:layout_constraintTop_toTopOf="@id/imageContainer" />
-
-    <TextView
-        android:id="@+id/s_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2000"
-        android:textColor="@color/orange"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/imageContainer"
-        app:layout_constraintEnd_toStartOf="@id/imageContainer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/imageContainer" />
-
-    <TextView
-        android:id="@+id/s_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/bonuses_text"
-        android:textColor="@color/light_orange"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/s_number"
-        app:layout_constraintTop_toBottomOf="@id/s_number" />
-
-    <TextView
-        android:id="@+id/r_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2000"
-        android:textColor="@color/blue"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/imageContainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imageContainer"
-        app:layout_constraintTop_toTopOf="@id/imageContainer" />
-
-    <ImageView
-        android:id="@+id/r_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:src="@drawable/ic_baseline_trending_up_24"
-        app:layout_constraintBottom_toBottomOf="@id/imageContainer"
-        app:layout_constraintStart_toEndOf="@id/r_number"
-        app:layout_constraintTop_toTopOf="@id/imageContainer" />
-
-    <TextView
-        android:id="@+id/r_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="место"
-        android:textColor="@color/_lightblue"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@id/r_number"
-        app:layout_constraintTop_toBottomOf="@id/r_number" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/testsContainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:elevation="6dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/favoritesContainer">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/s_number"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingVertical="4dp">
+            android:text="2000"
+            android:textColor="@color/orange"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/imageContainer"
+            app:layout_constraintEnd_toStartOf="@id/imageContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageContainer" />
 
+        <TextView
+            android:id="@+id/s_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bonuses_text"
+            android:textColor="@color/light_orange"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/s_number"
+            app:layout_constraintTop_toBottomOf="@id/s_number" />
 
-            <ImageView
-                android:id="@+id/t_icon"
-                android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/r_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2000"
+            android:textColor="@color/blue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/imageContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageContainer"
+            app:layout_constraintTop_toTopOf="@id/imageContainer" />
+
+        <ImageView
+            android:id="@+id/r_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_baseline_trending_up_24"
+            app:layout_constraintBottom_toBottomOf="@id/imageContainer"
+            app:layout_constraintStart_toEndOf="@id/r_number"
+            app:layout_constraintTop_toTopOf="@id/imageContainer" />
+
+        <TextView
+            android:id="@+id/r_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="место"
+            android:textColor="@color/_lightblue"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/r_number"
+            app:layout_constraintTop_toBottomOf="@id/r_number" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/testsContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:elevation="6dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/favoritesContainer">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_baseline_task_alt_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/t_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:layout_marginStart="8dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/tests_profile"
-                android:textColor="@color/text_purple"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/t_count"
-                app:layout_constraintStart_toEndOf="@id/t_icon"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/t_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:layout_marginEnd="12dp"
-                android:text="10"
-                android:textColor="@color/text_purple"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:paddingVertical="4dp">
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/t_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/ic_baseline_task_alt_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/t_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginStart="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/tests_profile"
+                    android:textColor="@color/text_purple"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/t_count"
+                    app:layout_constraintStart_toEndOf="@id/t_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/t_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:text="10"
+                    android:textColor="@color/text_purple"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-    </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/logout"
-        android:layout_width="0dp"
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/logout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/white"
+            android:paddingVertical="4dp"
+            android:text="@string/logout"
+            android:textColor="@color/red"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/testsContainer"
+            app:strokeColor="@color/red"
+            app:strokeWidth="1dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/white"
-        android:paddingVertical="4dp"
-        android:text="@string/logout"
-        android:textColor="@color/red"
-        app:cornerRadius="8dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="@color/red"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/testsContainer" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

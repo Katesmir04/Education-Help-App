@@ -47,5 +47,5 @@ object MyBackendRepository : IRepository, IRepository.AuthRepository {
 
     override suspend fun pushNewUser(user: User) = backApi.pushNewUser(user)
 
-
+    override suspend fun getUserInfo(id: String) = backApi.getUserInfo(id)
 }

@@ -25,4 +25,7 @@ interface IMyBackendAPI {
 
     @GET("/data/addBonusesToUser")
     suspend fun addBonusesToUser(@Query("id") id: String, @Query("number") number: Int)
+
+    @GET("/data/getUserInfo")
+    suspend fun getUserInfo(@Query("id") id: String): User
 }

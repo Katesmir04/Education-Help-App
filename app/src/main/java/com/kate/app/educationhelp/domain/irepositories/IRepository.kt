@@ -11,6 +11,7 @@ interface IRepository {
     suspend fun getTestsByTopicId(id: String): List<Test>
     suspend fun getAllQuizes(): List<Quize>
     suspend fun addBonusesToUser(id: String, number: Int)
+    suspend fun getUserInfo(id: String): User
 
     interface AuthRepository {
         suspend fun signIn(email: String, password: String): AuthResult
