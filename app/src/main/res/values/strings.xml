@@ -37,4 +37,47 @@
     <string name="logout">Выйти</string>
     <string name="complete">Завершить</string>
     <string name="go_back_to_signin">Уже есть аккаунт? <b>ВОЙТИ</b></string>
+    <string name="choose_grade">Выберите класс</string>
+    <string name="choose">Выбрать</string>
+    <string name="your_grade">В каком классе вы учитесь?</string>
+    <string name="default_grade">Класс</string>
+
+    <string-array name="grades">
+        <item>1 класс</item>
+        <item>2 класс</item>
+        <item>3 класс</item>
+        <item>4 класс</item>
+        <item>5 класс</item>
+        <item>6 класс</item>
+        <item>7 класс</item>
+        <item>8 класс</item>
+        <item>9 класс</item>
+        <item>10 класс</item>
+        <item>11 класс</item>
+    </string-array>
+
+    <string-array name="fav_subject">
+        <item>Алгебра</item>
+        <item>Русский язык</item>
+        <item>Литература</item>
+        <item>Английский язык</item>
+        <item>История</item>
+        <item>ОБЖ</item>
+        <item>География</item>
+        <item>Биология</item>
+        <item>Информатика</item>
+        <item>Обществознание</item>
+        <item>Черчение</item>
+        <item>Геометрия</item>
+        <item>Физика</item>
+        <item>Химия</item>
+        <item>Чтение</item>
+        <item>Природоведение</item>
+        <item>Математика</item>
+        <item>Естествознание</item>
+        <item>МХК</item>
+    </string-array>
+
+    <string name="fav_sub">Выберите любимый предмет</string>
+    <string name="continue_b">Продолжить</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.kate.app.educationhelp.presentation.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentSignUpBinding
+import kotlinx.android.synthetic.main.quize_test_item.*
 
 class SignUpFragment : Fragment() {
     private val binding: FragmentSignUpBinding by lazy {
@@ -48,7 +48,14 @@ class SignUpFragment : Fragment() {
 
         binding.signin.setOnClickListener {
             if (email.isNotBlank() && password.isNotBlank()) {
-                authViewModel.signUp(email, password)
+
+                //navigate to new screen
+                //sign up after new screen
+                //authViewModel.signUp(email, password)
+                findNavController().navigate(
+                    R.id.action_signUpFragment_to_gradeAndSubjectFragment,
+                    GradeAndSubjectFragmentArgs(name = "kek", email = email, password = password).toBundle()
+                )
             } else {
                 binding.email.error = getString(R.string.cannot_be_empty)
                 binding.password.error = getString(R.string.cannot_be_empty)

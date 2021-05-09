@@ -122,7 +122,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
-        android:text="@string/sign_up_b"
+        android:text="@string/continue_b"
         android:textColor="@color/text_purple"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -31,6 +31,24 @@
         <action
             android:id="@+id/action_signUpFragment_to_mainActivity"
             app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_signUpFragment_to_gradeAndSubjectFragment"
+            app:destination="@id/gradeAndSubjectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gradeAndSubjectFragment"
+        android:name="com.kate.app.educationhelp.presentation.auth.GradeAndSubjectFragment"
+        android:label="fragment_grade_and_subject"
+        tools:layout="@layout/fragment_grade_and_subject" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="string" />
     </fragment>
 
 </navigation>
