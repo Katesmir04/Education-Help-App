@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentSignUpBinding
-import kotlinx.android.synthetic.main.quize_test_item.*
 
 class SignUpFragment : Fragment() {
     private val binding: FragmentSignUpBinding by lazy {
@@ -20,6 +19,7 @@ class SignUpFragment : Fragment() {
 
     private var email: String = ""
     private var password: String = ""
+    private var name: String = ""
 
     private val authViewModel by viewModels<AuthViewModel>()
 
@@ -46,15 +46,21 @@ class SignUpFragment : Fragment() {
             password = text.toString()
         }
 
+        binding.name.editText?.doAfterTextChanged { text ->
+            binding.name.error =
+                if (text?.length == 0) getString(R.string.cannot_be_empty) else null
+            name = text.toString()
+        }
+
         binding.signin.setOnClickListener {
             if (email.isNotBlank() && password.isNotBlank()) {
-
-                //navigate to new screen
-                //sign up after new screen
-                //authViewModel.signUp(email, password)
                 findNavController().navigate(
                     R.id.action_signUpFragment_to_gradeAndSubjectFragment,
-                    GradeAndSubjectFragmentArgs(name = "kek", email = email, password = password).toBundle()
+                    GradeAndSubjectFragmentArgs(
+                        name = name,
+                        email = email,
+                        password = password
+                    ).toBundle()
                 )
             } else {
                 binding.email.error = getString(R.string.cannot_be_empty)

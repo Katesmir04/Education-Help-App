@@ -32,7 +32,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun signUp(email: String, password: String) {
+    fun signUp(name: String, email: String, password: String, grade: Int, favSub: String) {
         viewModelScope.launch {
             try {
                 SignUpUserUseCase(MyBackendRepository).execute(
@@ -44,7 +44,9 @@ class AuthViewModel : ViewModel() {
                     PushNewUserUseCase(MyBackendRepository).execute(
                         user = emptyUser(
                             it.uid,
-                            "Vasya"
+                            name,
+                            favSub,
+                            grade
                         )
                     )
                 } ?: run {
@@ -60,13 +62,13 @@ class AuthViewModel : ViewModel() {
         Authorized, Failed, None
     }
 
-    private fun emptyUser(id: String, name: String) =
+    private fun emptyUser(id: String, name: String, favoriteSubject: String, grade: Int) =
         User(
             id = id,
             avatar = "",
-            favoriteSubject = "",
+            favoriteSubject = favoriteSubject,
             favorites = emptyList(),
-            grade = 0,
+            grade = grade,
             name = name,
             passedQuizes = emptyList(),
             recentlyViewed = emptyList(),

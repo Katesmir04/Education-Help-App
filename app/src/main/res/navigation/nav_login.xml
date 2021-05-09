@@ -49,6 +49,9 @@
         <argument
             android:name="password"
             app:argType="string" />
+        <action
+            android:id="@+id/action_gradeAndSubjectFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
     </fragment>
 
 </navigation>
