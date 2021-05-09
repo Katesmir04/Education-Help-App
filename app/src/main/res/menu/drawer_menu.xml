@@ -16,4 +16,12 @@
             android:id="@+id/allQuizesFragment"
             android:title="@string/quizes" />
     </group>
+
+    <group
+        android:id="@+id/profile"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/profileFragment"
+            android:title="@string/profile" />
+    </group>
 </menu>

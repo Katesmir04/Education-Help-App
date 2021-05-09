@@ -59,4 +59,10 @@
             android:id="@+id/action_quizeResultsFragment_to_allQuizesFragment"
             app:destination="@id/allQuizesFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.kate.app.educationhelp.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
