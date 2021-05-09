@@ -13,4 +13,9 @@
     <color name="color_background">#FFFFFF</color>
     <color name="text_color">#000000</color>
     <color name="icon_color">#FFFFFF</color>
+
+
+    <color name="main_purple">#A76AE4</color>
+    <color name="text_purple">#5B1CAE</color>
+
 </resources>
