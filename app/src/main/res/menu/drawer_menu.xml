@@ -22,6 +22,6 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/profileFragment"
-            android:title="@string/profile" />
+            android:title="@string/personals" />
     </group>
 </menu>

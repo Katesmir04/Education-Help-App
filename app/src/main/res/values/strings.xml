@@ -80,5 +80,8 @@
 
     <string name="fav_sub">Выберите любимый предмет</string>
     <string name="continue_b">Продолжить</string>
-    <string name="profile">Профиль</string>
+    <string name="personals">Личный кабинет</string>
+    <string name="bonuses_text">бонусов</string>
+    <string name="favs_profile">Избранное</string>
+    <string name="tests_profile">Пройденные тесты</string>
 </resources>

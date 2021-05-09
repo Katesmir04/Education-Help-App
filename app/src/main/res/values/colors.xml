@@ -17,5 +17,10 @@
 
     <color name="main_purple">#A76AE4</color>
     <color name="text_purple">#5B1CAE</color>
+    <color name="orange">#FF9800</color>
+    <color name="light_orange">#F4C277</color>
+    <color name="blue">#00BCD4</color>
+    <color name="_lightblue">#59C3D1</color>
 
+    <color name="trans">#00FFFFFF</color>
 </resources>
