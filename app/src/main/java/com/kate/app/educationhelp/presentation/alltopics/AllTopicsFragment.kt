@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.Chip
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentAllTopicsBinding
 import com.kate.app.educationhelp.domain.models.Topic
@@ -51,6 +52,21 @@ class AllTopicsFragment : Fragment() {
         binding.root.setOnRefreshListener {
             viewModel.refreshData()
         }
+
+        var lastCheckedId = View.NO_ID
+
+        binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == View.NO_ID) {
+                group.check(lastCheckedId)
+                return@setOnCheckedChangeListener
+            }
+
+            lastCheckedId = checkedId
+
+            adapter.submitList(viewModel.filterListByName(binding.root.findViewById<Chip>(checkedId).text.toString()))
+            binding.recyclerView.adapter?.notifyDataSetChanged()
+        }
+
     }
 
     private fun onTopicClicked(topic: Topic) {

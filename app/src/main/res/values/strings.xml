@@ -78,10 +78,32 @@
         <item>МХК</item>
     </string-array>
 
+    <string name="s_0">Алгебра</string>
+    <string name="s_1">Русский</string>
+    <string name="s_2">Литература</string>
+    <string name="s_3">Английский язык</string>
+    <string name="s_4">История</string>
+    <string name="s_5">ОБЖ</string>
+    <string name="s_6">География</string>
+    <string name="s_7">Биология</string>
+    <string name="s_8">Информатика</string>
+    <string name="s_9">Обществознание</string>
+    <string name="s_10">Черчение</string>
+    <string name="s_11">Геометрия</string>
+    <string name="s_12">Физика</string>
+    <string name="s_13">Химия</string>
+    <string name="s_14">Чтение</string>
+    <string name="s_15">Природоведение</string>
+    <string name="s_16">Математика</string>
+    <string name="s_17">Естествознание</string>
+    <string name="s_18">МХК</string>
+
+
     <string name="fav_sub">Выберите любимый предмет</string>
     <string name="continue_b">Продолжить</string>
     <string name="personals">Личный кабинет</string>
     <string name="bonuses_text">бонусов</string>
     <string name="favs_profile">Избранное</string>
     <string name="tests_profile">Пройденные тесты</string>
+    <string name="all">Все</string>
 </resources>
