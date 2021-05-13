@@ -24,4 +24,6 @@
 
     <color name="trans">#00FFFFFF</color>
 
+    <color name="dark_grey">#C1C1C1</color>
+
 </resources>
