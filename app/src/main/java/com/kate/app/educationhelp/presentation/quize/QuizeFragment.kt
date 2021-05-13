@@ -27,6 +27,7 @@ class QuizeFragment : Fragment() {
 
     private var answers: MutableList<QuizeResults> = mutableListOf()
     private var goToResults = false
+    private var bonusesProgress: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +53,12 @@ class QuizeFragment : Fragment() {
                             state.content,
                             confirm = {
                                 answers.add(QuizeResults(it.first, it.second, it.third))
+
+                                if (it.second) {
+                                    bonusesProgress += it.third
+                                }
+
+                                updateProgress(state.content)
                             },
                             next = {
                                 moveToNextItem(state.content)
@@ -72,6 +79,20 @@ class QuizeFragment : Fragment() {
 
         //binding.title.text = topicId.title ?: "..."
 
+    }
+
+    private fun updateProgress(tests: List<Test>) {
+        binding.bonusesProgress.max =
+            tests.mapNotNull { test ->
+                test.bonus
+            }.sumBy { bonus ->
+                bonus
+            }
+
+        binding.bonusesProgress.progress =
+            bonusesProgress
+
+        binding.bonusesSum.text = "$bonusesProgress б"
     }
 
     private fun moveToNextItem(list: List<Test>) {
