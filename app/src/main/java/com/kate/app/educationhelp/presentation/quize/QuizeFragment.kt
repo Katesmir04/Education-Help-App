@@ -12,6 +12,10 @@ import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentQuizeBinding
 import com.kate.app.educationhelp.domain.models.Test
 import kotlinx.android.parcel.Parcelize
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class QuizeFragment : Fragment() {
 
@@ -61,7 +65,11 @@ class QuizeFragment : Fragment() {
                                 updateProgress(state.content)
                             },
                             next = {
-                                moveToNextItem(state.content)
+                                GlobalScope.launch(Dispatchers.Main) {
+                                    delay(1000)
+                                    moveToNextItem(state.content)
+                                }
+
                             })
                         clipToPadding = false;
                         setPadding(60, 60, 60, 60);

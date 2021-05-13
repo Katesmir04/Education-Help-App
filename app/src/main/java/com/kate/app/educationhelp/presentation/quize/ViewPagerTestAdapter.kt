@@ -48,30 +48,26 @@ class ViewPagerTestAdapter(
 
             view.findViewById<RadioButton>(R.id.a_1).text = it.answer?.first()
             view.findViewById<RadioButton>(R.id.a_1).setOnClickListener { button ->
-                currentAnswer =
-                    Triple(it, (button as RadioButton).text == it.correct_answer, it.bonus ?: 0)
+                applyAnswer(it, button)
+
             }
             view.findViewById<RadioButton>(R.id.a_2).text = it.answer?.get(1)
             view.findViewById<RadioButton>(R.id.a_2).setOnClickListener { button ->
-                currentAnswer =
-                    Triple(it, (button as RadioButton).text == it.correct_answer, it.bonus ?: 0)
+                applyAnswer(it, button)
             }
             view.findViewById<RadioButton>(R.id.a_3).text = it.answer?.get(2)
             view.findViewById<RadioButton>(R.id.a_3).setOnClickListener { button ->
-                currentAnswer =
-                    Triple(it, (button as RadioButton).text == it.correct_answer, it.bonus ?: 0)
+                applyAnswer(it, button)
             }
             view.findViewById<RadioButton>(R.id.a_4).text = it.answer?.get(3)
             view.findViewById<RadioButton>(R.id.a_4).setOnClickListener { button ->
-                currentAnswer =
-                    Triple(it, (button as RadioButton).text == it.correct_answer, it.bonus ?: 0)
+                applyAnswer(it, button)
             }
 
             view.findViewById<TextView>(R.id.bonus).text = "Bonuses ${it.bonus?.toString()}"
 
             view.findViewById<TextView>(R.id.button).setOnClickListener {
-                currentAnswer?.let { it1 -> confirm.invoke(it1) }
-                next.invoke()
+                confirmAnswerAndGoToNext()
             }
 
             listOfViews.add(
@@ -81,6 +77,21 @@ class ViewPagerTestAdapter(
 
         container.addView(listOfViews[position])
         return listOfViews[position]
+    }
+
+    private fun confirmAnswerAndGoToNext() {
+        currentAnswer?.let { it1 -> confirm.invoke(it1) }
+        next.invoke()
+    }
+
+    private fun applyAnswer(
+        it: Test,
+        button: View?
+    ) {
+        currentAnswer =
+            Triple(it, (button as RadioButton).text == it.correct_answer, it.bonus ?: 0)
+            confirmAnswerAndGoToNext()
+
     }
 
     override fun getCount(): Int {
