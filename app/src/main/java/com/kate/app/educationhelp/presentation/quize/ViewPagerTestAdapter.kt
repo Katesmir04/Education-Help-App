@@ -40,7 +40,11 @@ class ViewPagerTestAdapter(
 
             view.findViewById<TextView>(R.id.descr).text = it.title
 
-            view.findViewById<TextView>(R.id.name).text = "Test ${position + 1}"
+            view.findViewById<TextView>(R.id.name).text = context.resources.getString(
+                R.string.test_number_from_all,
+                (position + 1).toString(),
+                data.size.toString()
+            )
 
             view.findViewById<RadioButton>(R.id.a_1).text = it.answer?.first()
             view.findViewById<RadioButton>(R.id.a_1).setOnClickListener { button ->

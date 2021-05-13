@@ -106,4 +106,6 @@
     <string name="favs_profile">Избранное</string>
     <string name="tests_profile">Пройденные тесты</string>
     <string name="all">Все</string>
+
+    <string name="test_number_from_all">Вопрос %s/%s</string>
 </resources>
