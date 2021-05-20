@@ -45,6 +45,8 @@ class QuizeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.bonusesSum.text = "Удачи!"
+
         viewModel.testsState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 TestsListState.Loading -> {
@@ -71,20 +73,15 @@ class QuizeFragment : Fragment() {
                                 }
 
                             })
-                        clipToPadding = false;
-                        setPadding(60, 60, 60, 60);
-                        pageMargin = 16
+//                        clipToPadding = false;
+//                        setPadding(60, 60, 60, 60);
+//                        pageMargin = 16
                     }
                 }
             }
         }
 
         topicId.let { viewModel.refreshData(it) }
-
-        viewModel.topic.observe(viewLifecycleOwner) {
-            binding.title.text = it?.title ?: "..."
-        }
-
         //binding.title.text = topicId.title ?: "..."
 
     }
@@ -97,10 +94,15 @@ class QuizeFragment : Fragment() {
                 bonus
             }
 
+        if(bonusesProgress == 0){
+            binding.bonusesSum.text = "Удачи!"
+        } else {
+            binding.bonusesSum.text = "$bonusesProgress б"
+        }
         binding.bonusesProgress.progress =
             bonusesProgress
 
-        binding.bonusesSum.text = "$bonusesProgress б"
+
     }
 
     private fun moveToNextItem(list: List<Test>) {

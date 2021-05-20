@@ -35,11 +35,6 @@ class ViewPagerTestAdapter(
             val view = LayoutInflater.from(context)
                 .inflate(R.layout.quize_test_item, null)
 
-            if (position == data.size - 1) {
-                view.findViewById<TextView>(R.id.button).text =
-                    context.resources.getString(R.string.complete)
-            }
-
             view.findViewById<TextView>(R.id.descr).text = it.title
 
             view.findViewById<TextView>(R.id.name).text = context.resources.getString(
@@ -84,12 +79,6 @@ class ViewPagerTestAdapter(
                     view.findViewById<TextView>(R.id.a_4),
                     view.findViewById<ImageView>(R.id.image_4)
                 )
-            }
-
-            view.findViewById<TextView>(R.id.bonus).text = "Bonuses ${it.bonus?.toString()}"
-
-            view.findViewById<TextView>(R.id.button).setOnClickListener {
-                confirmAnswerAndGoToNext()
             }
 
             listOfViews.add(
