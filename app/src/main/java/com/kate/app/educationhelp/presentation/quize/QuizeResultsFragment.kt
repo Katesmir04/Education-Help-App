@@ -36,13 +36,6 @@ class QuizeResultsFragment : Fragment() {
         results = QuizeResultsFragmentArgs.fromBundle(requireArguments()).results.toList()
         val adapter = QuizeResultsAdapter(requireContext())
 
-        binding.recycler.addItemDecoration(
-            DividerItemDecoration(
-                binding.recycler.context,
-                LinearLayoutManager.VERTICAL
-            )
-        )
-
         binding.recycler.adapter = adapter
         adapter.submitList(results)
 
@@ -51,10 +44,16 @@ class QuizeResultsFragment : Fragment() {
             findNavController().navigate(R.id.action_quizeResultsFragment_to_allQuizesFragment)
         }
 
-        binding.totalBonuses.text = resources.getString(
-            R.string.total_bonuses,
-            results.totalBonuses().toString()
-        )
+        binding.bonusesProgress.max = results.size
+
+        binding.bonusesProgress.progress = results.filter {
+            it.correct
+        }.size
+
+        binding.totalB.text = "${results.totalBonuses()} б"
+
+        binding.bonusesSum.text =
+            "${((binding.bonusesProgress.progress.toDouble() / binding.bonusesProgress.max.toDouble()) * 100).toInt()} %"
     }
 
 

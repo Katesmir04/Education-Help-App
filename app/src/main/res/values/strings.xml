@@ -24,8 +24,8 @@
     <string name="sign_up_b">Зарегистрироваться</string>
     <string name="cannot_be_empty">Поле не может быть пустым</string>
     <string name="toast_no_such_user">Ошибка. Неверный логин или пароль</string>
-    <string name="confirm">Подтвердить</string>
-    <string name="you_will_not_be_able_to_retake_the_quiz">На прохождение теста дается одна попытка</string>
+    <string name="confirm">Получить бонусы</string>
+    <string name="you_will_not_be_able_to_retake_the_quiz">После подтверждения, тест закроется для прохождения</string>
 
     <string name="subject_and_grade">%s, %s класс</string>
     <string name="video">Видео</string>
@@ -108,4 +108,5 @@
     <string name="all">Все</string>
 
     <string name="test_number_from_all">Вопрос %s/%s</string>
+    <string name="quize_completed">Тест пройден!</string>
 </resources>
