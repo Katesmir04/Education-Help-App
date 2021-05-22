@@ -6,6 +6,7 @@ import com.google.firebase.ktx.Firebase
 import com.kate.app.educationhelp.data.apiservice.IMyBackendAPI
 import com.kate.app.educationhelp.domain.irepositories.IRepository
 import com.kate.app.educationhelp.domain.models.User
+import com.kate.app.educationhelp.presentation.quize.QuizeResultsViewModel
 import kotlinx.coroutines.tasks.await
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -48,4 +49,6 @@ object MyBackendRepository : IRepository, IRepository.AuthRepository {
     override suspend fun pushNewUser(user: User) = backApi.pushNewUser(user)
 
     override suspend fun getUserInfo(id: String) = backApi.getUserInfo(id)
+    override suspend fun addPassedQuize(quizeItem: QuizeResultsViewModel.QuizeItem) =
+        backApi.addPassedQuize(quizeItem)
 }

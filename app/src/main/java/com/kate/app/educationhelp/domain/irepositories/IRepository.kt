@@ -5,6 +5,7 @@ import com.kate.app.educationhelp.domain.models.Quize
 import com.kate.app.educationhelp.domain.models.Test
 import com.kate.app.educationhelp.domain.models.Topic
 import com.kate.app.educationhelp.domain.models.User
+import com.kate.app.educationhelp.presentation.quize.QuizeResultsViewModel.QuizeItem
 
 interface IRepository {
     suspend fun getAllTopics(): List<Topic>
@@ -12,6 +13,7 @@ interface IRepository {
     suspend fun getAllQuizes(): List<Quize>
     suspend fun addBonusesToUser(id: String, number: Int)
     suspend fun getUserInfo(id: String): User
+    suspend fun addPassedQuize(quizeItem: QuizeItem)
 
     interface AuthRepository {
         suspend fun signIn(email: String, password: String): AuthResult

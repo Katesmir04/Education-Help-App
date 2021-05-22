@@ -1,14 +1,13 @@
 package com.kate.app.educationhelp.presentation.topicdescr
 
-import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentTopicDescriptionBinding
@@ -28,6 +27,8 @@ class TopicDescriptionFragment : Fragment() {
         TopicDescriptionFragmentArgs.fromBundle(requireArguments()).topic
     }
 
+    private val viewModel by viewModels<TopicDescriptionViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,6 +39,7 @@ class TopicDescriptionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.loadQuize(topic.quizeIds?.first() ?: "")
         binding.apply {
             title.text = topic.title
             subject.text =
@@ -63,10 +65,7 @@ class TopicDescriptionFragment : Fragment() {
 
             testsT.setOnClickListener {
                 topic.id?.let { topicId ->
-                    findNavController().navigate(
-                        R.id.action_topicDescriptionFragment_to_quizeFragment,
-                        QuizeFragmentArgs(topicId = topicId).toBundle()
-                    )
+                    goToQuiz(topicId)
                 }
             }
 
@@ -82,6 +81,18 @@ class TopicDescriptionFragment : Fragment() {
                 }
             }
         }
+
+    }
+
+    private fun goToQuiz(topicId: String) {
+
+        viewModel.quize.value?.let {
+            findNavController().navigate(
+                R.id.action_topicDescriptionFragment_to_quizeFragment,
+                QuizeFragmentArgs(topicId = topicId, quize = it).toBundle()
+            )
+        } ?: Toast.makeText(requireContext(), "Тест не найден", Toast.LENGTH_LONG).show()
+
 
     }
 

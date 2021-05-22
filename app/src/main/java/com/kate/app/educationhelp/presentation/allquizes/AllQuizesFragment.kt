@@ -32,7 +32,7 @@ class AllQuizesFragment : Fragment() {
 
         val adapter = AllQuizesAdapter(requireContext()) {
             findNavController().navigate(R.id.action_allQuizesFragment_to_quizeFragment,
-                it.topicId?.let { it1 -> QuizeFragmentArgs(topicId = it1).toBundle() })
+                it.topicId?.let { it1 -> QuizeFragmentArgs(topicId = it1, quize = it).toBundle() })
         }
         binding.recyclerView.adapter = adapter
         viewModel.quizesState.observe(viewLifecycleOwner) { state ->

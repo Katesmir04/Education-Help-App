@@ -46,6 +46,9 @@
         <argument
             android:name="topicId"
             app:argType="string" />
+        <argument
+            android:name="quize"
+            app:argType="com.kate.app.educationhelp.domain.models.Quize" />
     </fragment>
     <fragment
         android:id="@+id/quizeResultsFragment"
@@ -58,6 +61,9 @@
         <action
             android:id="@+id/action_quizeResultsFragment_to_allQuizesFragment"
             app:destination="@id/allQuizesFragment" />
+        <argument
+            android:name="quize"
+            app:argType="com.kate.app.educationhelp.domain.models.Quize" />
     </fragment>
 
     <fragment

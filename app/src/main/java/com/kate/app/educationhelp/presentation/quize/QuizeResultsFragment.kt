@@ -24,6 +24,10 @@ class QuizeResultsFragment : Fragment() {
 
     private lateinit var results: List<QuizeResults>
 
+    private val quize by lazy {
+        QuizeResultsFragmentArgs.fromBundle(requireArguments()).quize
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,7 +51,7 @@ class QuizeResultsFragment : Fragment() {
         adapter.submitList(results)
 
         binding.confirm.setOnClickListener {
-            viewModel.updateBonuses(results.totalBonuses())
+            viewModel.updateQuizeStatus(results.totalBonuses(), quize = quize, results = results)
             findNavController().navigate(R.id.action_quizeResultsFragment_to_allQuizesFragment)
         }
 
