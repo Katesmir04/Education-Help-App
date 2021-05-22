@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.shape.CornerFamily
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentQuizeResultsBinding
 import com.kate.app.educationhelp.presentation.quize.QuizeFragment.QuizeResults
@@ -42,6 +43,14 @@ class QuizeResultsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val radius = 32f
+        binding.image.shapeAppearanceModel = binding.image.shapeAppearanceModel
+            .toBuilder()
+            .setTopLeftCorner(CornerFamily.ROUNDED, radius)
+            .setTopRightCorner(CornerFamily.ROUNDED, radius)
+            .build()
+
         results = QuizeResultsFragmentArgs.fromBundle(requireArguments()).results.toList()
         val adapter = QuizeResultsAdapter(requireContext())
 
@@ -60,6 +69,10 @@ class QuizeResultsFragment : Fragment() {
         }
 
         binding.bonusesProgress.max = results.size
+
+        binding.bonusesFrom.text = "${results.filter { 
+            it.correct
+        }.size} из ${results.size}"
 
         binding.bonusesProgress.progress = results.filter {
             it.correct

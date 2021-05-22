@@ -21,6 +21,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/puv"
                 android:paddingBottom="32dp"
                 app:layout_collapseMode="parallax">
 
@@ -37,12 +38,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/alert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/you_will_not_be_able_to_retake_the_quiz"
+                    android:textColor="@color/red"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/quizeCompleted" />
+
                 <FrameLayout
                     android:id="@+id/totalProgress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@id/quizeCompleted">
+                    app:layout_constraintTop_toBottomOf="@id/alert">
 
                     <com.google.android.material.progressindicator.CircularProgressIndicator
                         android:id="@+id/bonusesProgress"
@@ -50,15 +64,34 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         app:indicatorColor="@color/text_purple"
-                        app:indicatorSize="70dp" />
+                        app:indicatorSize="90dp" />
 
-                    <TextView
-                        android:id="@+id/bonusesSum"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textColor="@color/text_purple"
-                        android:textSize="16sp" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/bonusesSum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/text_purple"
+                            android:textSize="16sp"
+                            tools:text="Kto zdes" />
+
+                        <TextView
+                            android:id="@+id/bonusesFrom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/main_purple"
+                            android:textSize="12sp"
+                            tools:text="Kto zdes" />
+                    </LinearLayout>
+
+
                 </FrameLayout>
 
                 <TextView
@@ -87,7 +120,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/main_purple"
         android:overScrollMode="never"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         tools:context=".presentation.quize.QuizeResultsFragment">
@@ -95,14 +127,22 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="32dp"
             tools:context=".presentation.quize.QuizeResultsFragment">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bubbles_background" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"
+                android:layout_marginTop="8dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:nestedScrollingEnabled="true"
                 android:paddingBottom="60dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -119,25 +159,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:background="@color/trans"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/alert"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/you_will_not_be_able_to_retake_the_quiz"
-            android:textColor="@color/red" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/text_purple"
+            android:backgroundTint="@color/orange"
             android:text="@string/confirm"
             app:cornerRadius="8dp" />
     </LinearLayout>

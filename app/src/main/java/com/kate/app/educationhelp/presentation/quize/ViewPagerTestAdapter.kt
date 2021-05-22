@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.PagerAdapter
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.shape.CornerFamily
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.domain.models.Test
 
@@ -32,8 +34,18 @@ class ViewPagerTestAdapter(
 
         data.forEach {
 
+
             val view = LayoutInflater.from(context)
                 .inflate(R.layout.quize_test_item, null)
+
+
+            val radius = 32f
+            view.findViewById<ShapeableImageView>(R.id.image).shapeAppearanceModel =
+                view.findViewById<ShapeableImageView>(R.id.image).shapeAppearanceModel
+                    .toBuilder()
+                    .setBottomLeftCorner(CornerFamily.ROUNDED, radius)
+                    .setBottomRightCorner(CornerFamily.ROUNDED, radius)
+                    .build()
 
             view.findViewById<TextView>(R.id.descr).text = it.title
 
