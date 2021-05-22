@@ -9,8 +9,10 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.shape.CornerFamily
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentLoginBinding
+
 
 class LoginFragment : Fragment() {
 
@@ -31,6 +33,13 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val radius = 32f
+        binding.image.shapeAppearanceModel = binding.image.shapeAppearanceModel
+            .toBuilder()
+            .setBottomLeftCorner(CornerFamily.ROUNDED, radius)
+            .setBottomRightCorner(CornerFamily.ROUNDED, radius)
+            .build()
 
         binding.email.editText?.doAfterTextChanged { text ->
             binding.email.error =

@@ -15,7 +15,8 @@
 
         <activity android:name=".presentation.MainActivity" />
 
-        <activity android:name=".presentation.auth.LoginActivity">
+        <activity android:name=".presentation.auth.LoginActivity"
+            android:theme="@style/Theme.EducationHelpNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

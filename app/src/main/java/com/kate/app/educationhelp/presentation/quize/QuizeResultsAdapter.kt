@@ -35,12 +35,10 @@ class QuizeResultsAdapter(private val context: Context) :
                 name.text = quizeResults.test.title
                 when (quizeResults.correct) {
                     true -> {
-                        correctness.text = "Correct"
-                        correctness.setTextColor(context.resources.getColor(R.color.green))
+                        correctness.text = "${quizeResults.bonus} б"
                     }
                     else -> {
-                        correctness.text = "Incorrect"
-                        correctness.setTextColor(context.resources.getColor(R.color.red))
+                        correctness.text = "0 б"
                     }
                 }
 

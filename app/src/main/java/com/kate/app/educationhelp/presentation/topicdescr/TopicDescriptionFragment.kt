@@ -89,7 +89,7 @@ class TopicDescriptionFragment : Fragment() {
         viewModel.quize.value?.let {
             findNavController().navigate(
                 R.id.action_topicDescriptionFragment_to_quizeFragment,
-                QuizeFragmentArgs(topicId = topicId, quize = it).toBundle()
+                QuizeFragmentArgs(topicId = topicId, quize = it, startFragment = R.id.topicDescriptionFragment, topic = topic).toBundle()
             )
         } ?: Toast.makeText(requireContext(), "Тест не найден", Toast.LENGTH_LONG).show()
 

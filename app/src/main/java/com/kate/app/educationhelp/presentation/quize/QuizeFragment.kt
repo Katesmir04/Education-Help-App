@@ -29,6 +29,14 @@ class QuizeFragment : Fragment() {
         QuizeFragmentArgs.fromBundle(requireArguments()).topicId
     }
 
+    private val startFragment by lazy {
+        QuizeFragmentArgs.fromBundle(requireArguments()).startFragment
+    }
+
+    private val topic by lazy {
+        QuizeFragmentArgs.fromBundle(requireArguments()).topic
+    }
+
     private val quize by lazy {
         QuizeFragmentArgs.fromBundle(requireArguments()).quize
     }
@@ -48,6 +56,8 @@ class QuizeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.bonusesSum.text = "Удачи!"
 
         viewModel.testsState.observe(viewLifecycleOwner) { state ->
             when (state) {
@@ -75,20 +85,15 @@ class QuizeFragment : Fragment() {
                                 }
 
                             })
-                        clipToPadding = false;
-                        setPadding(60, 60, 60, 60);
-                        pageMargin = 16
+//                        clipToPadding = false;
+//                        setPadding(60, 60, 60, 60);
+//                        pageMargin = 16
                     }
                 }
             }
         }
 
         topicId.let { viewModel.refreshData(it) }
-
-        viewModel.topic.observe(viewLifecycleOwner) {
-            binding.title.text = it?.title ?: "..."
-        }
-
         //binding.title.text = topicId.title ?: "..."
 
     }
@@ -101,10 +106,15 @@ class QuizeFragment : Fragment() {
                 bonus
             }
 
+        if(bonusesProgress == 0){
+            binding.bonusesSum.text = "Удачи!"
+        } else {
+            binding.bonusesSum.text = "$bonusesProgress б"
+        }
         binding.bonusesProgress.progress =
             bonusesProgress
 
-        binding.bonusesSum.text = "$bonusesProgress б"
+
     }
 
     private fun moveToNextItem(list: List<Test>) {
@@ -112,7 +122,7 @@ class QuizeFragment : Fragment() {
         if (goToResults) {
             findNavController().navigate(
                 R.id.action_quizeFragment_to_quizeResultsFragment,
-                QuizeResultsFragmentArgs(results = answers.toTypedArray(), quize = quize).toBundle()
+                QuizeResultsFragmentArgs(results = answers.toTypedArray(), startFragment = startFragment, topic = topic, quize = quize).toBundle()
             )
         }
 
