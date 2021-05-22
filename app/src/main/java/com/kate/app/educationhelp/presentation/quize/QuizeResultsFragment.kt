@@ -62,7 +62,6 @@ class QuizeResultsFragment : Fragment() {
 
         binding.confirm.setOnClickListener {
             viewModel.updateQuizeStatus(results.totalBonuses(), quize = quize, results = results) {
-                Log.d("KEK", "updated")
                 if (startFragment == R.id.topicDescriptionFragment) {
                     findNavController().navigate(R.id.action_quizeResultsFragment_to_topicDescriptionFragment,
                         topic?.let { it1 -> TopicDescriptionFragmentArgs(it1).toBundle() })
