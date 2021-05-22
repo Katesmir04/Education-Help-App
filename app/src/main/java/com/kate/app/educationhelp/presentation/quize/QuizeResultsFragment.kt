@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentQuizeResultsBinding
 import com.kate.app.educationhelp.presentation.quize.QuizeFragment.QuizeResults
+import com.kate.app.educationhelp.presentation.topicdescr.TopicDescriptionFragmentArgs
 
 
 class QuizeResultsFragment : Fragment() {
@@ -23,6 +24,14 @@ class QuizeResultsFragment : Fragment() {
     private val viewModel by viewModels<QuizeResultsViewModel>()
 
     private lateinit var results: List<QuizeResults>
+
+    private val startFragment by lazy {
+        QuizeResultsFragmentArgs.fromBundle(requireArguments()).startFragment
+    }
+
+    private val topic by lazy {
+        QuizeResultsFragmentArgs.fromBundle(requireArguments()).topic
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +50,13 @@ class QuizeResultsFragment : Fragment() {
 
         binding.confirm.setOnClickListener {
             viewModel.updateBonuses(results.totalBonuses())
-            findNavController().navigate(R.id.action_quizeResultsFragment_to_allQuizesFragment)
+            if(startFragment == R.id.topicDescriptionFragment){
+                findNavController().navigate(R.id.action_quizeResultsFragment_to_topicDescriptionFragment,
+                    topic?.let { it1 -> TopicDescriptionFragmentArgs(it1).toBundle() })
+            } else if (startFragment == R.id.allQuizesFragment){
+                findNavController().navigate(R.id.action_quizeResultsFragment_to_allQuizesFragment)
+            }
+
         }
 
         binding.bonusesProgress.max = results.size

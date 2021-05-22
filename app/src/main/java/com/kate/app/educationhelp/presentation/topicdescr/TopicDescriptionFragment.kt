@@ -65,7 +65,7 @@ class TopicDescriptionFragment : Fragment() {
                 topic.id?.let { topicId ->
                     findNavController().navigate(
                         R.id.action_topicDescriptionFragment_to_quizeFragment,
-                        QuizeFragmentArgs(topicId = topicId).toBundle()
+                        QuizeFragmentArgs(topicId = topicId, startFragment = R.id.topicDescriptionFragment, topic = topic).toBundle()
                     )
                 }
             }

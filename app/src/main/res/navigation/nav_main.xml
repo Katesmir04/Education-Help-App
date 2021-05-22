@@ -48,6 +48,13 @@
         <argument
             android:name="topicId"
             app:argType="string" />
+        <argument
+            android:name="startFragment"
+            app:argType="integer" />
+        <argument
+            android:name="topic"
+            app:argType="com.kate.app.educationhelp.domain.models.Topic"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/quizeResultsFragment"
@@ -62,6 +69,18 @@
             app:popUpToInclusive="true"
             app:popUpTo="@id/quizeResultsFragment"
             app:destination="@id/allQuizesFragment" />
+        <argument
+            android:name="startFragment"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_quizeResultsFragment_to_topicDescriptionFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/quizeResultsFragment"
+            app:destination="@id/topicDescriptionFragment" />
+        <argument
+            android:name="topic"
+            app:argType="com.kate.app.educationhelp.domain.models.Topic"
+            app:nullable="true" />
     </fragment>
 
     <fragment

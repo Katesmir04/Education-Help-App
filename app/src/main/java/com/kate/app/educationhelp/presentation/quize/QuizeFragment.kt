@@ -29,6 +29,14 @@ class QuizeFragment : Fragment() {
         QuizeFragmentArgs.fromBundle(requireArguments()).topicId
     }
 
+    private val startFragment by lazy {
+        QuizeFragmentArgs.fromBundle(requireArguments()).startFragment
+    }
+
+    private val topic by lazy {
+        QuizeFragmentArgs.fromBundle(requireArguments()).topic
+    }
+
     private var answers: MutableList<QuizeResults> = mutableListOf()
     private var goToResults = false
     private var bonusesProgress: Int = 0
@@ -110,7 +118,7 @@ class QuizeFragment : Fragment() {
         if (goToResults) {
             findNavController().navigate(
                 R.id.action_quizeFragment_to_quizeResultsFragment,
-                QuizeResultsFragmentArgs(results = answers.toTypedArray()).toBundle()
+                QuizeResultsFragmentArgs(results = answers.toTypedArray(), startFragment = startFragment, topic = topic).toBundle()
             )
         }
 
