@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/allQuizesFragment"
         android:name="com.kate.app.educationhelp.presentation.allquizes.AllQuizesFragment"
-        android:label="fragment_all_tests"
+        android:label="Тесты"
         tools:layout="@layout/fragment_all_quizes">
         <action
             android:id="@+id/action_allQuizesFragment_to_quizeFragment"
@@ -38,10 +38,12 @@
     <fragment
         android:id="@+id/quizeFragment"
         android:name="com.kate.app.educationhelp.presentation.quize.QuizeFragment"
-        android:label="fragment_quize"
+        android:label="Тест"
         tools:layout="@layout/fragment_quize">
         <action
             android:id="@+id/action_quizeFragment_to_quizeResultsFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/quizeFragment"
             app:destination="@id/quizeResultsFragment" />
         <argument
             android:name="topicId"
@@ -57,6 +59,8 @@
             app:argType="com.kate.app.educationhelp.presentation.quize.QuizeFragment$QuizeResults[]" />
         <action
             android:id="@+id/action_quizeResultsFragment_to_allQuizesFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/quizeResultsFragment"
             app:destination="@id/allQuizesFragment" />
     </fragment>
 

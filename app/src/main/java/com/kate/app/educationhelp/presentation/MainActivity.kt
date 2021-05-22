@@ -1,18 +1,15 @@
 package com.kate.app.educationhelp.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.kate.app.educationhelp.R
-import com.kate.app.educationhelp.data.repositories.MyBackendRepository
 import com.kate.app.educationhelp.databinding.ActivityMainBinding
-import kotlinx.coroutines.launch
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,31 +23,38 @@ class MainActivity : AppCompatActivity() {
         (supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment).navController
     }
 
+    private val drawerLayout by lazy {
+        binding.drawerLayout
+    }
+
+    private lateinit var appBarConfiguration: AppBarConfiguration
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.navView.setupWithNavController(navController)
 
         setupDrawerLayout()
-
-        lifecycleScope.launch {
-            Log.d("KEK", MyBackendRepository.getAllTopics().toString())
-        }
-
     }
 
     private fun setupDrawerLayout() {
-        binding.navView.setupWithNavController(navController)
-        NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
+        val topLevelFragments =
+            mutableSetOf(R.id.allTopicsFragment, R.id.allQuizesFragment, R.id.profileFragment)
+
+        appBarConfiguration = AppBarConfiguration.Builder(topLevelFragments)
+            .setDrawerLayout(drawerLayout)
+            .build()
+
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+
     }
 
     override fun onBackPressed() {
-        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            binding.drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) binding.drawerLayout.closeDrawer(
+            GravityCompat.START
+        ) else super.onBackPressed()
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(navController, binding.drawerLayout)
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 }
