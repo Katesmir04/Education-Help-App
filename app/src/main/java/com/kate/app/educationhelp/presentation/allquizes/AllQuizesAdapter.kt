@@ -16,7 +16,8 @@ import com.kate.app.educationhelp.presentation.quize.QuizeResultsViewModel.Quize
 
 class AllQuizesAdapter(
     private val context: Context,
-    private val quizeClick: (quize: Quize) -> Unit
+    private val quizeClick: (quize: Quize) -> Unit,
+    private val showRetakeDialog: (quize: Quize, bonuses: String, completed: String) -> Unit
 ) :
     ListAdapter<Quize, AllQuizesAdapter.Holder>(DiffCallback) {
 
@@ -54,19 +55,21 @@ class AllQuizesAdapter(
 
                 if (occurs.isNotEmpty()) {
                     passedBonuses.visibility = View.VISIBLE
-                    passedBonuses.text = "Бонусов получено: ${occurs.first().bonuses}"
+                    val bonuses = "Бонусов получено: ${occurs.first().bonuses}"
+                    passedBonuses.text = bonuses
 
                     passedCount.visibility = View.VISIBLE
                     val completedSize = getCompletedSize(occurs)
-                    passedCount.text = "Выполнено: ${
+                    val completed = "Выполнено: ${
                         completedSize
                     }/${occurs.first().results.size}"
+                    passedCount.text = completed
 
-                    setCompletedCardColor(completedSize)
 
-                    wholeCard.setOnClickListener {
-                        Toast.makeText(context, R.string.quize_already_done, Toast.LENGTH_LONG).show()
-                    }
+                    setCompletedCardColor(
+                        completedSize, quize, bonuses,
+                        completed,
+                    )
 
                 } else {
                     wholeCard.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white))
@@ -97,7 +100,10 @@ class AllQuizesAdapter(
         }.size
 
     private fun FragmentAllQuizesItemBinding.setCompletedCardColor(
-        completedSize: Int
+        completedSize: Int,
+        quize: Quize,
+        bonuses: String,
+        completed: String
     ) {
         if (completedSize == 0) {
             wholeCard.setCardBackgroundColor(
@@ -107,10 +113,18 @@ class AllQuizesAdapter(
                 )
             )
 
-            passedCount.setTextColor(ContextCompat.getColor(
-                context,
-                R.color.red
-            ))
+            passedCount.setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.red
+                )
+            )
+
+            wholeCard.setOnClickListener {
+                showRetakeDialog.invoke(quize, bonuses, completed)
+            }
+
+
         } else {
             wholeCard.setCardBackgroundColor(
                 ContextCompat.getColor(
@@ -118,6 +132,11 @@ class AllQuizesAdapter(
                     R.color.light_green
                 )
             )
+
+
+            wholeCard.setOnClickListener {
+                Toast.makeText(context, R.string.quize_already_done, Toast.LENGTH_LONG).show()
+            }
         }
     }
 

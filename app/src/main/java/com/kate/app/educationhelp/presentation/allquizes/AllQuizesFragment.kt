@@ -30,10 +30,26 @@ class AllQuizesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = AllQuizesAdapter(requireContext()) {
+        val adapter = AllQuizesAdapter(requireContext(), {
             findNavController().navigate(R.id.action_allQuizesFragment_to_quizeFragment,
-                it.topicId?.let { it1 -> QuizeFragmentArgs(topicId = it1, startFragment = R.id.allQuizesFragment, topic = null, quize = it).toBundle() })
-        }
+                it.topicId?.let { it1 ->
+                    QuizeFragmentArgs(
+                        topicId = it1,
+                        startFragment = R.id.allQuizesFragment,
+                        topic = null,
+                        quize = it
+                    ).toBundle()
+                })
+        },
+            showRetakeDialog = { quize, bonuses, completed ->
+                findNavController().navigate(
+                    R.id.action_allQuizesFragment_to_retakeFragment, RetakeFragmentArgs(
+                        quize = quize,
+                        bonuses, completed
+                    ).toBundle()
+                )
+
+            })
         binding.recyclerView.adapter = adapter
         viewModel.quizesState.observe(viewLifecycleOwner) { state ->
             when (state) {

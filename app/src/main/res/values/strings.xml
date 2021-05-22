@@ -111,4 +111,7 @@
     <string name="quize_completed">Тест пройден!</string>
 
     <string name="quize_already_done">Вы уже прошли этот тест</string>
+
+    <string name="retake_title">Вы действительно хотите перепройти тест?</string>
+    <string name="retake_button">Попробовать снова!</string>
 </resources>

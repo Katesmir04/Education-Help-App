@@ -23,12 +23,12 @@ class TopicDescriptionViewModel : ViewModel() {
                 it.id == id
             })
 
+
             isQuizeCompleted.postValue(GetPassedQuizesUseCase(MyBackendRepository).execute(
                 FirebaseAuth.getInstance().currentUser?.uid ?: ""
             ).any {
-                it.quize.id == id
+                it.quize.id?.trim() == id.trim()
             })
         }
-
     }
 }

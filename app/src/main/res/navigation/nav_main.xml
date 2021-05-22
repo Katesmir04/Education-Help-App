@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_allQuizesFragment_to_quizeFragment"
             app:destination="@id/quizeFragment" />
+        <action
+            android:id="@+id/action_allQuizesFragment_to_retakeFragment"
+            app:destination="@id/retakeFragment" />
     </fragment>
     <fragment
         android:id="@+id/topicDescriptionFragment"
@@ -94,4 +97,22 @@
         android:name="com.kate.app.educationhelp.presentation.profile.ProfileFragment"
         android:label="Личный кабинет"
         tools:layout="@layout/fragment_profile" />
+    <dialog
+        android:id="@+id/retakeFragment"
+        android:name="com.kate.app.educationhelp.presentation.allquizes.RetakeFragment"
+        android:label="fragment_retake"
+        tools:layout="@layout/fragment_retake" >
+        <argument
+            android:name="quize"
+            app:argType="com.kate.app.educationhelp.domain.models.Quize" />
+        <argument
+            android:name="bonuses"
+            app:argType="string" />
+        <argument
+            android:name="completed"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_retakeFragment_to_quizeFragment"
+            app:destination="@id/quizeFragment" />
+    </dialog>
 </navigation>
