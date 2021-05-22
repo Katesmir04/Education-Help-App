@@ -2,19 +2,30 @@ package com.kate.app.educationhelp.presentation.allquizes
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kate.app.educationhelp.R
-import com.kate.app.educationhelp.databinding.TopicItemBinding
+import com.kate.app.educationhelp.databinding.FragmentAllQuizesItemBinding
 import com.kate.app.educationhelp.domain.models.Quize
+import com.kate.app.educationhelp.presentation.quize.QuizeResultsViewModel.QuizeItem
 
 class AllQuizesAdapter(
     private val context: Context,
     private val quizeClick: (quize: Quize) -> Unit
 ) :
     ListAdapter<Quize, AllQuizesAdapter.Holder>(DiffCallback) {
+
+    private var listOfPassedQuizes = listOf<QuizeItem>()
+
+    fun putPassedQuizes(list: List<QuizeItem>) {
+        listOfPassedQuizes = list
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(parent)
     }
@@ -23,10 +34,10 @@ class AllQuizesAdapter(
         holder.bind(getItem(position))
     }
 
-    inner class Holder(private val binding: TopicItemBinding) :
+    inner class Holder(private val binding: FragmentAllQuizesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         constructor(parent: ViewGroup) : this(
-            TopicItemBinding.inflate(
+            FragmentAllQuizesItemBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false
@@ -35,6 +46,38 @@ class AllQuizesAdapter(
 
         fun bind(quize: Quize) {
             binding.apply {
+
+                val occurs = listOfPassedQuizes.filter {
+                    it.quize.id == quize.id
+                }
+
+
+                if (occurs.isNotEmpty()) {
+                    passedBonuses.visibility = View.VISIBLE
+                    passedBonuses.text = "Бонусов получено: ${occurs.first().bonuses}"
+
+                    passedCount.visibility = View.VISIBLE
+                    val completedSize = getCompletedSize(occurs)
+                    passedCount.text = "Выполнено: ${
+                        completedSize
+                    }/${occurs.first().results.size}"
+
+                    setCompletedCardColor(completedSize)
+
+                    wholeCard.setOnClickListener {
+                        Toast.makeText(context, R.string.quize_already_done, Toast.LENGTH_LONG).show()
+                    }
+
+                } else {
+                    wholeCard.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                    passedBonuses.visibility = View.GONE
+                    passedCount.visibility = View.GONE
+
+                    wholeCard.setOnClickListener {
+                        quizeClick.invoke(quize)
+                    }
+                }
+
                 title.text = quize.title
                 body.text = context.resources.getString(
                     R.string.subject_and_grade,
@@ -43,10 +86,38 @@ class AllQuizesAdapter(
                 )
                 // bodyTV.text = quize.title
 
-                wholeCard.setOnClickListener {
-                    quizeClick.invoke(quize)
-                }
+
             }
+        }
+    }
+
+    private fun getCompletedSize(occurs: List<QuizeItem>) =
+        occurs.first().results.filter {
+            it.correct
+        }.size
+
+    private fun FragmentAllQuizesItemBinding.setCompletedCardColor(
+        completedSize: Int
+    ) {
+        if (completedSize == 0) {
+            wholeCard.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.light_red
+                )
+            )
+
+            passedCount.setTextColor(ContextCompat.getColor(
+                context,
+                R.color.red
+            ))
+        } else {
+            wholeCard.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.light_green
+                )
+            )
         }
     }
 

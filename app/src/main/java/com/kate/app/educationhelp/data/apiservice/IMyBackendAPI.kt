@@ -4,7 +4,7 @@ import com.kate.app.educationhelp.domain.models.Quize
 import com.kate.app.educationhelp.domain.models.Test
 import com.kate.app.educationhelp.domain.models.Topic
 import com.kate.app.educationhelp.domain.models.User
-import com.kate.app.educationhelp.presentation.quize.QuizeResultsViewModel
+import com.kate.app.educationhelp.presentation.quize.QuizeResultsViewModel.QuizeItem
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -31,5 +31,8 @@ interface IMyBackendAPI {
     suspend fun getUserInfo(@Query("id") id: String): User
 
     @POST("/data/addPassedQuize")
-    suspend fun addPassedQuize(@Body quizeItem: QuizeResultsViewModel.QuizeItem)
+    suspend fun addPassedQuize(@Body quizeItem: QuizeItem)
+
+    @GET("/data/getPassedQuizes")
+    suspend fun getPassedQuizes(@Query("id") id: String): List<QuizeItem>
 }

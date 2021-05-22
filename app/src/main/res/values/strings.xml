@@ -109,4 +109,6 @@
 
     <string name="test_number_from_all">Вопрос %s/%s</string>
     <string name="quize_completed">Тест пройден!</string>
+
+    <string name="quize_already_done">Вы уже прошли этот тест</string>
 </resources>

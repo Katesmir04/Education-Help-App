@@ -1,14 +1,13 @@
 package com.kate.app.educationhelp.presentation.quize
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.shape.CornerFamily
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.databinding.FragmentQuizeResultsBinding
@@ -62,21 +61,24 @@ class QuizeResultsFragment : Fragment() {
         adapter.submitList(results)
 
         binding.confirm.setOnClickListener {
-            viewModel.updateQuizeStatus(results.totalBonuses(), quize = quize, results = results)
-            if(startFragment == R.id.topicDescriptionFragment){
-                findNavController().navigate(R.id.action_quizeResultsFragment_to_topicDescriptionFragment,
-                    topic?.let { it1 -> TopicDescriptionFragmentArgs(it1).toBundle() })
-            } else if (startFragment == R.id.allQuizesFragment){
-                findNavController().navigate(R.id.action_quizeResultsFragment_to_allQuizesFragment)
+            viewModel.updateQuizeStatus(results.totalBonuses(), quize = quize, results = results) {
+                Log.d("KEK", "updated")
+                if (startFragment == R.id.topicDescriptionFragment) {
+                    findNavController().navigate(R.id.action_quizeResultsFragment_to_topicDescriptionFragment,
+                        topic?.let { it1 -> TopicDescriptionFragmentArgs(it1).toBundle() })
+                } else if (startFragment == R.id.allQuizesFragment) {
+                    findNavController().navigate(R.id.action_quizeResultsFragment_to_allQuizesFragment)
+                }
             }
-
         }
 
         binding.bonusesProgress.max = results.size
 
-        binding.bonusesFrom.text = "${results.filter { 
-            it.correct
-        }.size} из ${results.size}"
+        binding.bonusesFrom.text = "${
+            results.filter {
+                it.correct
+            }.size
+        } из ${results.size}"
 
         binding.bonusesProgress.progress = results.filter {
             it.correct

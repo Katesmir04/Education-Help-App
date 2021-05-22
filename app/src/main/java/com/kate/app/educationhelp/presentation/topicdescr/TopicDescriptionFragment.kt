@@ -64,8 +64,10 @@ class TopicDescriptionFragment : Fragment() {
             })
 
             testsT.setOnClickListener {
+
                 topic.id?.let { topicId ->
                     goToQuiz(topicId)
+
                 }
             }
 
@@ -80,6 +82,12 @@ class TopicDescriptionFragment : Fragment() {
                     more.text = resources.getString(R.string.details)
                 }
             }
+
+            viewModel.isQuizeCompleted.observe(viewLifecycleOwner) {
+                if (it) {
+                    testsT.visibility = View.GONE
+                }
+            }
         }
 
     }
@@ -89,7 +97,12 @@ class TopicDescriptionFragment : Fragment() {
         viewModel.quize.value?.let {
             findNavController().navigate(
                 R.id.action_topicDescriptionFragment_to_quizeFragment,
-                QuizeFragmentArgs(topicId = topicId, quize = it, startFragment = R.id.topicDescriptionFragment, topic = topic).toBundle()
+                QuizeFragmentArgs(
+                    topicId = topicId,
+                    quize = it,
+                    startFragment = R.id.topicDescriptionFragment,
+                    topic = topic
+                ).toBundle()
             )
         } ?: Toast.makeText(requireContext(), "Тест не найден", Toast.LENGTH_LONG).show()
 

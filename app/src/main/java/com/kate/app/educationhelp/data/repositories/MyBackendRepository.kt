@@ -51,4 +51,6 @@ object MyBackendRepository : IRepository, IRepository.AuthRepository {
     override suspend fun getUserInfo(id: String) = backApi.getUserInfo(id)
     override suspend fun addPassedQuize(quizeItem: QuizeResultsViewModel.QuizeItem) =
         backApi.addPassedQuize(quizeItem)
+
+    override suspend fun getPassedQuizes(id: String) = backApi.getPassedQuizes(id)
 }

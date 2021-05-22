@@ -43,6 +43,7 @@ class AllQuizesFragment : Fragment() {
                 is QuizesListState.Loaded -> {
                     binding.root.isRefreshing = false
                     adapter.submitList(state.content)
+                    adapter.putPassedQuizes(state.passedQuizes)
                 }
             }
 

@@ -16,14 +16,18 @@ import kotlinx.coroutines.launch
 
 class QuizeResultsViewModel : ViewModel() {
 
-    fun updateQuizeStatus(bonuses: Int, quize: Quize, results: List<QuizeResults>) {
+    fun updateQuizeStatus(
+        bonuses: Int,
+        quize: Quize,
+        results: List<QuizeResults>,
+        comleted: (Boolean) -> Unit
+    ) {
         viewModelScope.launch {
 
             AddBonusesToUser(MyBackendRepository).execute(
                 Firebase.auth.currentUser?.uid ?: "",
                 bonuses
             )
-
 
             FirebaseAuth.getInstance().currentUser?.let {
                 AddPassedQuizUseCase(MyBackendRepository).execute(
@@ -36,6 +40,7 @@ class QuizeResultsViewModel : ViewModel() {
                 )
             }
 
+            comleted(true)
         }
     }
 
