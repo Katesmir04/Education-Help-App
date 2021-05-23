@@ -60,10 +60,12 @@ class ProfileFragment : Fragment() {
             name.text = userInfo.name
             email.text = Firebase.auth.currentUser?.email
             grade.text = (userInfo.grade ?: 0).toString()
-            fCount.text = (userInfo.favorites?.size ?: 0).toString()
+            //fCount.text = (userInfo.favorites?.size ?: 0).toString()
+            fCount.text = 1.toString()
             sNumber.text = (userInfo.totalBonuses ?: 0).toString()
-            rNumber.text = 1234.toString()
-            tCount.text = (userInfo.passedQuizes?.size ?: 0).toString()
+            rNumber.text = 83.toString()
+            //tCount.text = (userInfo.passedQuizes?.size ?: 0).toString()
+            tCount.text = "5"
             logout.setOnClickListener {
                 Firebase.auth.signOut()
                 startActivity(Intent(requireActivity(), LoginActivity::class.java))
