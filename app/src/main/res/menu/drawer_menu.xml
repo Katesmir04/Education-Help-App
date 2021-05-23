@@ -6,6 +6,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/feedFragment"
+            android:icon="@drawable/ic_outline_home_24"
             android:title="@string/feed" />
     </group>
 
@@ -14,9 +15,11 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/allTopicsFragment"
+            android:icon="@drawable/ic_outline_auto_stories_20"
             android:title="@string/all_theoretical_topics" />
         <item
             android:id="@+id/favoritesTopicsFragment"
+            android:icon="@drawable/ic_baseline_favorite_border_24"
             android:title="@string/favorites_theoretical_topics" />
     </group>
 
@@ -25,9 +28,11 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/allQuizesFragment"
+            android:icon="@drawable/ic_outline_quiz_20"
             android:title="@string/quizes" />
         <item
             android:id="@+id/passedQuizesFragment"
+            android:icon="@drawable/ic_baseline_task_alt_24"
             android:title="@string/passed_quizes" />
     </group>
 
@@ -36,6 +41,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/profileFragment"
+            android:icon="@drawable/ic_outline_account_circle_24"
             android:title="@string/personals" />
     </group>
 </menu>

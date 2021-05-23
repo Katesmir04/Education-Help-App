@@ -95,10 +95,11 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:src="@drawable/ic_baseline_star_border_24"
+                    android:src="@drawable/ic_baseline_favorite_border_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/text_purple" />
 
                 <TextView
                     android:id="@+id/f_text"
@@ -229,7 +230,8 @@
                     android:src="@drawable/ic_baseline_task_alt_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/text_purple" />
 
                 <TextView
                     android:id="@+id/t_text"
