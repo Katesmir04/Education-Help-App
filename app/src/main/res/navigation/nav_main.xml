@@ -131,4 +131,13 @@
             android:id="@+id/action_favoritesTopicsFragment_to_topicDescriptionFragment"
             app:destination="@id/topicDescriptionFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.kate.app.educationhelp.presentation.feed.FeedFragment"
+        android:label="@string/feed_fragment_label"
+        tools:layout="@layout/fragment_feed">
+        <action
+            android:id="@+id/action_feedFragment_to_topicDescriptionFragment"
+            app:destination="@id/topicDescriptionFragment" />
+    </fragment>
 </navigation>

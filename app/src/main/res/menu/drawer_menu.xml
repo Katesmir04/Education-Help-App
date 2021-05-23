@@ -2,6 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
+        android:id="@+id/feed"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/feedFragment"
+            android:title="@string/feed" />
+    </group>
+
+    <group
         android:id="@+id/all_theoretical_topics"
         android:checkableBehavior="single">
         <item

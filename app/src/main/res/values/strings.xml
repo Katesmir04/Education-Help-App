@@ -3,6 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="all_theoretical_topics">Теория</string>
+    <string name="feed">Главная</string>
     <string name="favorites_theoretical_topics">Избранное</string>
     <string name="quizes">Тесты</string>
     <string name="passed_quizes">Пройденные тесты</string>
@@ -119,4 +120,9 @@
 
     <string name="added_to_favorites">Добавлено в избранное</string>
     <string name="removed_favorites">Удалено из избранного</string>
+    <string name="recommended_topic">Рекомендуемая тема</string>
+
+    <string name="nothing_to_show_recommended">...</string>
+    <string name="nothing_to_show_recommended_toast">К сожалению, нам нечего вам показать</string>
+    <string name="feed_fragment_label">Главная</string>
 </resources>
