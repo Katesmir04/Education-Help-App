@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupDrawerLayout() {
         val topLevelFragments =
-            mutableSetOf(R.id.allTopicsFragment, R.id.allQuizesFragment, R.id.profileFragment, R.id.passedQuizesFragment)
+            mutableSetOf(R.id.allTopicsFragment, R.id.allQuizesFragment, R.id.profileFragment, R.id.passedQuizesFragment, R.id.favoritesTopicsFragment)
 
         appBarConfiguration = AppBarConfiguration.Builder(topLevelFragments)
             .setDrawerLayout(drawerLayout)
