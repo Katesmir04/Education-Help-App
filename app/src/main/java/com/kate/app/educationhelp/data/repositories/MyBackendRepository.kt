@@ -59,4 +59,6 @@ object MyBackendRepository : IRepository, IRepository.AuthRepository {
     override suspend fun removeFavorite(id: String, topic: Topic) =
         backApi.removeFavorite(id, topic)
 
+    override suspend fun getAllUsers() = backApi.getAllUsers()
+
 }

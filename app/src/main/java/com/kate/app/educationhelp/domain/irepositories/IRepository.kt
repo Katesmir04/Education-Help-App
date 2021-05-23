@@ -18,6 +18,7 @@ interface IRepository {
     suspend fun getFavorites(id: String): List<Topic>
     suspend fun addFavorite(id: String, topic: Topic)
     suspend fun removeFavorite(id: String, topic: Topic)
+    suspend fun getAllUsers(): List<User>
 
     interface AuthRepository {
         suspend fun signIn(email: String, password: String): AuthResult

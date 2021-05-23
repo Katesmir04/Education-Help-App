@@ -129,4 +129,7 @@
     <string name="favorite_topic_title">Избранное</string>
     <string name="favorite_topic_subtitle">Последнее добавленное:</string>
     <string name="no_favs">Ничего нет</string>
+
+    <string name="rating_title">Рейтинг</string>
+    <string name="rating_user_position">Вы здесь</string>
 </resources>

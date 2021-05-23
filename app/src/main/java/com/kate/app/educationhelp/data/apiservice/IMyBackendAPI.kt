@@ -44,4 +44,7 @@ interface IMyBackendAPI {
 
     @POST("/data/removeFavorite")
     suspend fun removeFavorite(@Query("id") id: String, @Body topic: Topic)
+
+    @GET("/data/getAllUsers")
+    suspend fun getAllUsers(): List<User>
 }

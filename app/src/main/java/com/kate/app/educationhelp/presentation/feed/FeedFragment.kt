@@ -60,6 +60,33 @@ class FeedFragment : Fragment() {
             ).show()
 
         }
+
+        val adapter = RatingAdapter(requireContext())
+
+        binding.ratingList.adapter = adapter
+
+        viewModel.ratingList.observe(viewLifecycleOwner) { usersInfoRating ->
+            if (usersInfoRating != null) {
+                if (usersInfoRating.inFive) {
+                    adapter.setUser(usersInfoRating.user)
+                    adapter.submitList(usersInfoRating.list)
+                } else if (!usersInfoRating.inFive) {
+                    adapter.submitList(usersInfoRating.list)
+
+                    binding.userPositionContainer.visibility = View.VISIBLE
+                    binding.divider.visibility = View.VISIBLE
+
+                    binding.name.text = usersInfoRating.user.name
+                    binding.position.text = usersInfoRating.position.toString()
+                    if (usersInfoRating.user.totalBonuses != null) {
+                        binding.bonuses.text = usersInfoRating.user.totalBonuses.toString()
+                    } else {
+                        binding.bonuses.text = "0"
+                    }
+                }
+                binding.ratingList.adapter?.notifyDataSetChanged()
+            }
+        }
     }
 
     private fun setNothingInFavs() {
