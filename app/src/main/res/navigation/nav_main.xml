@@ -115,4 +115,12 @@
             android:id="@+id/action_retakeFragment_to_quizeFragment"
             app:destination="@id/quizeFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/passedQuizesFragment"
+        android:name="com.kate.app.educationhelp.presentation.allquizes.passedquizes.PassedQuizesFragment"
+        android:label="@string/passed_quizes" >
+        <action
+            android:id="@+id/action_passedQuizesFragment_to_retakeFragment"
+            app:destination="@id/retakeFragment" />
+    </fragment>
 </navigation>

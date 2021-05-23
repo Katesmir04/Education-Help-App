@@ -15,6 +15,9 @@
         <item
             android:id="@+id/allQuizesFragment"
             android:title="@string/quizes" />
+        <item
+            android:id="@+id/passedQuizesFragment"
+            android:title="@string/passed_quizes" />
     </group>
 
     <group
