@@ -59,6 +59,11 @@ class QuizeFragment : Fragment() {
 
         binding.bonusesSum.text = "Удачи!"
 
+
+        binding.pager.setOnTouchListener { v, event ->
+            return@setOnTouchListener true
+        }
+
         viewModel.testsState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 TestsListState.Loading -> {

@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".presentation.feed.FeedFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/light_bubbles_big" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/recommendedCard"
         android:layout_width="0dp"
