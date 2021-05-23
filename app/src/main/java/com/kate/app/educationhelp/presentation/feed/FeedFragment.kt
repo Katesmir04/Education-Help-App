@@ -37,12 +37,33 @@ class FeedFragment : Fragment() {
             } ?: setNothing()
         }
 
+        viewModel.lastFavorite.observe(viewLifecycleOwner) { topic ->
+            topic?.let {
+                binding.fTitle.text = it.title
+            } ?: setNothingInFavs()
+        }
+
+        binding.favoritesCard.setOnClickListener {
+            findNavController().navigate(R.id.action_feedFragment_to_favoritesTopicsFragment)
+        }
+
         binding.recommendedCard.setOnClickListener {
             viewModel.recommendedTopic.value?.let {
-                findNavController().navigate(R.id.action_feedFragment_to_topicDescriptionFragment, TopicDescriptionFragmentArgs(topic = it).toBundle())
-            } ?: Toast.makeText(context, R.string.nothing_to_show_recommended_toast, Toast.LENGTH_LONG).show()
+                findNavController().navigate(
+                    R.id.action_feedFragment_to_topicDescriptionFragment,
+                    TopicDescriptionFragmentArgs(topic = it).toBundle()
+                )
+            } ?: Toast.makeText(
+                context,
+                R.string.nothing_to_show_recommended_toast,
+                Toast.LENGTH_LONG
+            ).show()
 
         }
+    }
+
+    private fun setNothingInFavs() {
+        binding.fTitle.text = resources.getString(R.string.no_favs)
     }
 
     private fun setNothing() {

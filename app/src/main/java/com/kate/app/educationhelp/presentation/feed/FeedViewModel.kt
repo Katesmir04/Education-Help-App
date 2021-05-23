@@ -8,6 +8,7 @@ import com.kate.app.educationhelp.data.repositories.MyBackendRepository
 import com.kate.app.educationhelp.domain.models.Topic
 import com.kate.app.educationhelp.domain.models.User
 import com.kate.app.educationhelp.domain.usecases.GetAllTopicsUseCase
+import com.kate.app.educationhelp.domain.usecases.GetFavoritesTopicsUseCase
 import com.kate.app.educationhelp.domain.usecases.GetPassedQuizesUseCase
 import com.kate.app.educationhelp.domain.usecases.GetUserInfoUseCase
 import kotlinx.coroutines.launch
@@ -15,6 +16,8 @@ import kotlinx.coroutines.launch
 class FeedViewModel : ViewModel() {
 
     val recommendedTopic = MutableLiveData<Topic?>(null)
+
+    val lastFavorite = MutableLiveData<Topic?>(null)
 
     val userInfo = MutableLiveData<User?>(null)
 
@@ -31,10 +34,21 @@ class FeedViewModel : ViewModel() {
                 result
             ).also {
                 loadRecommendedTopic(result)
+                loadLastFavorite(result)
             }
         }
     }
 
+
+    private fun loadLastFavorite(user: User) {
+        viewModelScope.launch {
+            val result = GetFavoritesTopicsUseCase(MyBackendRepository).execute(
+                FirebaseAuth.getInstance().currentUser?.uid ?: ""
+            )
+
+            lastFavorite.postValue(result.lastOrNull())
+        }
+    }
 
     private fun loadRecommendedTopic(user: User) {
         viewModelScope.launch {
