@@ -7,6 +7,9 @@
         <item
             android:id="@+id/allTopicsFragment"
             android:title="@string/all_theoretical_topics" />
+        <item
+            android:id="@+id/favoritesTopicsFragment"
+            android:title="@string/favorites_theoretical_topics" />
     </group>
 
     <group

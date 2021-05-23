@@ -39,6 +39,7 @@ class TopicDescriptionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.updateFavoriteStatus(topic)
         viewModel.loadQuize(topic.quizeIds?.first() ?: "")
         binding.apply {
             title.text = topic.title
@@ -87,6 +88,23 @@ class TopicDescriptionFragment : Fragment() {
                 if (it) {
                     testsT.visibility = View.GONE
                 }
+            }
+        }
+
+        viewModel.isInFavorite.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.favs.setImageResource(R.drawable.ic_baseline_favorite_24)
+                binding.favs.setOnClickListener {
+                    viewModel.removeFavorite(topic)
+                    Toast.makeText(context, R.string.removed_favorites, Toast.LENGTH_LONG).show()
+                }
+            } else {
+                binding.favs.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                binding.favs.setOnClickListener {
+                    viewModel.addFavorite(topic)
+                    Toast.makeText(context, R.string.added_to_favorites, Toast.LENGTH_LONG).show()
+                }
+
             }
         }
 

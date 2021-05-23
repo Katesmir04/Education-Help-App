@@ -45,9 +45,9 @@
         tools:layout="@layout/fragment_quize">
         <action
             android:id="@+id/action_quizeFragment_to_quizeResultsFragment"
-            app:popUpToInclusive="true"
+            app:destination="@id/quizeResultsFragment"
             app:popUpTo="@id/quizeFragment"
-            app:destination="@id/quizeResultsFragment" />
+            app:popUpToInclusive="true" />
         <argument
             android:name="topicId"
             app:argType="string" />
@@ -72,17 +72,17 @@
             app:argType="com.kate.app.educationhelp.presentation.quize.QuizeFragment$QuizeResults[]" />
         <action
             android:id="@+id/action_quizeResultsFragment_to_allQuizesFragment"
-            app:popUpToInclusive="true"
+            app:destination="@id/allQuizesFragment"
             app:popUpTo="@id/quizeResultsFragment"
-            app:destination="@id/allQuizesFragment" />
+            app:popUpToInclusive="true" />
         <argument
             android:name="startFragment"
             app:argType="integer" />
         <action
             android:id="@+id/action_quizeResultsFragment_to_topicDescriptionFragment"
-            app:popUpToInclusive="true"
+            app:destination="@id/topicDescriptionFragment"
             app:popUpTo="@id/quizeResultsFragment"
-            app:destination="@id/topicDescriptionFragment" />
+            app:popUpToInclusive="true" />
         <argument
             android:name="topic"
             app:argType="com.kate.app.educationhelp.domain.models.Topic"
@@ -101,7 +101,7 @@
         android:id="@+id/retakeFragment"
         android:name="com.kate.app.educationhelp.presentation.allquizes.RetakeFragment"
         android:label="fragment_retake"
-        tools:layout="@layout/fragment_retake" >
+        tools:layout="@layout/fragment_retake">
         <argument
             android:name="quize"
             app:argType="com.kate.app.educationhelp.domain.models.Quize" />
@@ -118,9 +118,17 @@
     <fragment
         android:id="@+id/passedQuizesFragment"
         android:name="com.kate.app.educationhelp.presentation.allquizes.passedquizes.PassedQuizesFragment"
-        android:label="@string/passed_quizes" >
+        android:label="@string/passed_quizes">
         <action
             android:id="@+id/action_passedQuizesFragment_to_retakeFragment"
             app:destination="@id/retakeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesTopicsFragment"
+        android:name="com.kate.app.educationhelp.presentation.alltopics.favorites.FavoritesTopicsFragment"
+        android:label="@string/favorites_theoretical_topics">
+        <action
+            android:id="@+id/action_favoritesTopicsFragment_to_topicDescriptionFragment"
+            app:destination="@id/topicDescriptionFragment" />
     </fragment>
 </navigation>

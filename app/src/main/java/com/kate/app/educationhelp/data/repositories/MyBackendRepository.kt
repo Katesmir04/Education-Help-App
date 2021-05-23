@@ -5,6 +5,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.kate.app.educationhelp.data.apiservice.IMyBackendAPI
 import com.kate.app.educationhelp.domain.irepositories.IRepository
+import com.kate.app.educationhelp.domain.models.Topic
 import com.kate.app.educationhelp.domain.models.User
 import com.kate.app.educationhelp.presentation.quize.QuizeResultsViewModel
 import kotlinx.coroutines.tasks.await
@@ -53,4 +54,9 @@ object MyBackendRepository : IRepository, IRepository.AuthRepository {
         backApi.addPassedQuize(quizeItem)
 
     override suspend fun getPassedQuizes(id: String) = backApi.getPassedQuizes(id)
+    override suspend fun getFavorites(id: String) = backApi.getFavorites(id)
+    override suspend fun addFavorite(id: String, topic: Topic) = backApi.addFavorite(id, topic)
+    override suspend fun removeFavorite(id: String, topic: Topic) =
+        backApi.removeFavorite(id, topic)
+
 }

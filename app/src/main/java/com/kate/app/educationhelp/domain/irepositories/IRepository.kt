@@ -15,6 +15,9 @@ interface IRepository {
     suspend fun getUserInfo(id: String): User
     suspend fun addPassedQuize(quizeItem: QuizeItem)
     suspend fun getPassedQuizes(id: String): List<QuizeItem>
+    suspend fun getFavorites(id: String): List<Topic>
+    suspend fun addFavorite(id: String, topic: Topic)
+    suspend fun removeFavorite(id: String, topic: Topic)
 
     interface AuthRepository {
         suspend fun signIn(email: String, password: String): AuthResult

@@ -35,4 +35,13 @@ interface IMyBackendAPI {
 
     @GET("/data/getPassedQuizes")
     suspend fun getPassedQuizes(@Query("id") id: String): List<QuizeItem>
+
+    @GET("/data/getFavorites")
+    suspend fun getFavorites(@Query("id") id: String): List<Topic>
+
+    @POST("/data/addFavorite")
+    suspend fun addFavorite(@Query("id") id: String, @Body topic: Topic)
+
+    @POST("/data/removeFavorite")
+    suspend fun removeFavorite(@Query("id") id: String, @Body topic: Topic)
 }

@@ -3,6 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="all_theoretical_topics">Теория</string>
+    <string name="favorites_theoretical_topics">Избранное</string>
     <string name="quizes">Тесты</string>
     <string name="passed_quizes">Пройденные тесты</string>
 
@@ -115,4 +116,7 @@
 
     <string name="retake_title">Вы действительно хотите перепройти тест?</string>
     <string name="retake_button">Попробовать снова!</string>
+
+    <string name="added_to_favorites">Добавлено в избранное</string>
+    <string name="removed_favorites">Удалено из избранного</string>
 </resources>
