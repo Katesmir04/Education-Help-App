@@ -132,4 +132,5 @@
 
     <string name="rating_title">Рейтинг</string>
     <string name="rating_user_position">Вы здесь</string>
+    <string name="applySecondAnswer">Подтвердить</string>
 </resources>
