@@ -46,7 +46,11 @@ class TopicDescriptionFragment : Fragment() {
             subject.text =
                 getString(R.string.subject_and_grade, topic.subject, topic.grade.toString())
 
-            body.text = topic.body?.replace("\n", "\n")
+            body.text = topic.body?.run {
+                replace("//n", "\n").run {
+                    replace("//t", "\t")
+                }
+            }
 
             pager.apply {
                 adapter = topic.images?.let {

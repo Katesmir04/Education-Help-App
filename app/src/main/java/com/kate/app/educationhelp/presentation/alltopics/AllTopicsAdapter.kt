@@ -41,7 +41,11 @@ class AllTopicsAdapter(
                     topic.subject,
                     topic.grade.toString()
                 )
-                body.text = topic.body
+                body.text = topic.body?.run {
+                    replace("//n", "").run {
+                        replace("//t", "")
+                    }
+                }
                 wholeCard.setOnClickListener {
                     topicClick.invoke(topic)
                 }
