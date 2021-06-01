@@ -39,17 +39,17 @@ class AllTopicsFragment : Fragment() {
         viewModel.topicsState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 TopicsListState.Loading -> {
-                    binding.root.isRefreshing = true
+                    binding.swipeRefresh.isRefreshing = true
                 }
                 is TopicsListState.Loaded -> {
-                    binding.root.isRefreshing = false
+                    binding.swipeRefresh.isRefreshing = false
                     adapter.submitList(state.content)
                 }
             }
 
         }
 
-        binding.root.setOnRefreshListener {
+        binding.swipeRefresh.setOnRefreshListener {
             viewModel.refreshData()
         }
 

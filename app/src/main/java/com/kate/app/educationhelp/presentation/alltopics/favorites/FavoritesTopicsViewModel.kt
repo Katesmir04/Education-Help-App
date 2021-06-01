@@ -28,7 +28,7 @@ class FavoritesTopicsViewModel : ViewModel() {
                 TopicsListState.Loaded(
                     GetFavoritesTopicsUseCase(
                         MyBackendRepository
-                    ).execute(FirebaseAuth.getInstance().currentUser?.uid ?: "")
+                    ).execute(FirebaseAuth.getInstance().currentUser?.uid ?: "").reversed()
                 )
             )
         }
