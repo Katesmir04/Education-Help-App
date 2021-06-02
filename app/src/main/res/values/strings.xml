@@ -133,4 +133,6 @@
     <string name="rating_title">Рейтинг</string>
     <string name="rating_user_position">Вы здесь</string>
     <string name="applySecondAnswer">Подтвердить</string>
+    <string name="your_answer">Ваш ответ</string>
+    <string name="empty_text_as_incorrect">Пустой ответ считается за неправильный</string>
 </resources>

@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doAfterTextChanged
 import androidx.viewpager.widget.PagerAdapter
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.shape.CornerFamily
+import com.google.android.material.textfield.TextInputLayout
 import com.kate.app.educationhelp.R
 import com.kate.app.educationhelp.domain.models.Test
 
@@ -41,10 +43,14 @@ class ViewPagerTestAdapter(
                 view = LayoutInflater.from(context)
                     .inflate(R.layout.quize_test_item, null)
                 bindCommonTestView(view, it, position)
-            } else {
+            } else if (it.type == 2) {
                 view =
                     LayoutInflater.from(context).inflate(R.layout.quize_test_item_second_type, null)
                 bindSecondTypeTestView(view, it, position)
+            } else {
+                view =
+                    LayoutInflater.from(context).inflate(R.layout.quize_test_item_third_type, null)
+                bindThirdTypeTestView(view, it, position)
             }
 
             listOfViews.add(
@@ -176,6 +182,49 @@ class ViewPagerTestAdapter(
                 view.findViewById<ImageView>(R.id.image_4)
             )
         }
+    }
+
+    private var thirdAnswer = ""
+
+    private fun bindThirdTypeTestView(
+        view: View,
+        it: Test,
+        position: Int
+    ) {
+        val radius = 32f
+        view.findViewById<ShapeableImageView>(R.id.image).shapeAppearanceModel =
+            view.findViewById<ShapeableImageView>(R.id.image).shapeAppearanceModel
+                .toBuilder()
+                .setBottomLeftCorner(CornerFamily.ROUNDED, radius)
+                .setBottomRightCorner(CornerFamily.ROUNDED, radius)
+                .build()
+
+        view.findViewById<TextView>(R.id.descr).text = it.title
+
+        view.findViewById<TextView>(R.id.name).text = context.resources.getString(
+            R.string.test_number_from_all,
+            (position + 1).toString(),
+            data.size.toString()
+        )
+
+        view.findViewById<TextInputLayout>(R.id.enterField).editText?.doAfterTextChanged { text ->
+            thirdAnswer = text?.toString() ?: ""
+        }
+
+        view.findViewById<MaterialButton>(R.id.confirmThirdTypAnswer).setOnClickListener { button ->
+            confirmThirdTypeAnswer(it)
+        }
+    }
+
+    private fun confirmThirdTypeAnswer(it: Test) {
+        currentAnswer =
+            Triple(
+                it,
+                it.correct_answer == thirdAnswer,
+                it.bonus ?: 0
+            )
+
+        confirmAnswerAndGoToNext()
     }
 
     private fun bindCommonTestView(
