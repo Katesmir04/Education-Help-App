@@ -38,6 +38,13 @@
         <item name="hintTextColor">@color/white</item>
     </style>
 
+    <style name="Theme.AnswerInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/dark_grey</item>
+        <item name="boxStrokeColor">@color/anwer_input_colors_state</item>
+        <item name="helperTextTextColor">@color/main_purple</item>
+        <item name="hintTextColor">@color/main_purple</item>
+    </style>
+
     <style name="Theme.Expandable" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="android:textColorHint">@color/white</item>
         <item name="boxStrokeColor">@color/text_input_colors_state</item>
