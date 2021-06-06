@@ -212,11 +212,17 @@ class ViewPagerTestAdapter(
         }
 
         view.findViewById<MaterialButton>(R.id.confirmThirdTypAnswer).setOnClickListener { button ->
-            confirmThirdTypeAnswer(it)
+            confirmThirdTypeAnswer(it, view)
         }
     }
 
-    private fun confirmThirdTypeAnswer(it: Test) {
+    private fun confirmThirdTypeAnswer(it: Test, view: View) {
+        if(it.correct_answer == thirdAnswer){
+            view.findViewById<TextInputLayout>(R.id.enterField).boxStrokeColor = context.resources.getColor(R.color.green)
+        } else {
+            view.findViewById<TextInputLayout>(R.id.enterField).boxStrokeColor = context.resources.getColor(R.color.red)
+            view.findViewById<TextInputLayout>(R.id.enterField).error = "Не правильно"
+        }
         currentAnswer =
             Triple(
                 it,

@@ -64,7 +64,7 @@ class TopicDescriptionFragment : Fragment() {
             videos.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     val kek = "bSMZknDI6bg"
-                    youTubePlayer.loadVideo(kek, 0F)
+                    topic.videos?.firstOrNull()?.let { youTubePlayer.loadVideo(it, 0F) }
                 }
             })
 
